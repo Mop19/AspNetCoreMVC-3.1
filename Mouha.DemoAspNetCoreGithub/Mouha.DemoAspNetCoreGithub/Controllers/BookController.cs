@@ -1,22 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Mouha.DemoAspNetCoreGithub.Models;
+using Mouha.DemoAspNetCoreGithub.Repository;
+using System.Collections.Generic;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
 {
     public class BookController : Controller
     {
-        public string GetAllBooks()
+        private readonly BookRepository _bookRepository = null;
+
+        public BookController()
         {
-            return "Tous les livres";
+            _bookRepository = new BookRepository();
+        }
+        public List<BookModel> GetAllBooks()
+        {
+            return _bookRepository.GetAllBooks();
         }
 
-        public string GetBook(int id)
+        public BookModel GetBook(int id)
         {
-            return $"Livre avec id = {id}";
+            return _bookRepository.GetBookById(id);// $"Livre avec id = {id}";
         }
 
-        public string SearchBook(string bookName, string authorName)
+        public List<BookModel> SearchBook(string bookName, string authorName)
         {
-            return $"Livre avec nom = {bookName} & Auteur = {authorName}";
+            return _bookRepository.SearchBook(bookName, authorName);  //$"Livre avec nom = {bookName} & Auteur = {authorName}";
         }
     }
 }
