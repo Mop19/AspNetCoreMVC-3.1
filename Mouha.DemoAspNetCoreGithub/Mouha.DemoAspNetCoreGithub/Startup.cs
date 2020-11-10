@@ -26,8 +26,56 @@ namespace Mouha.DemoAspNetCoreGithub
                 app.UseDeveloperExceptionPage();
             }
 
+            #region "Cours sur les Middlewares"
+
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("Bonjour, voici mon premier middleware");
+
+            //    await next();
+
+            //    await context.Response.WriteAsync("Bonjour, voici mon premier middleware");
+            //});
+
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("Bonjour, voici mon deuxieme middleware");
+
+            //    await next();
+
+            //    await context.Response.WriteAsync("Bonjour, voici mon deuxieme middleware");
+            //});
+
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("Bonjour, voici mon troisieme middleware");
+
+            //    await next();
+            //});
+
+            //Il faudra ajouter UseRouting()
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello World!");
+            //    });
+            //});
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.Map("/Mouha", async context =>
+            //    {
+            //        await context.Response.WriteAsync("Hello Mouha!");
+            //    });
+            //});
+
+            #endregion
+
             app.UseRouting();
 
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
@@ -35,6 +83,8 @@ namespace Mouha.DemoAspNetCoreGithub
                     await context.Response.WriteAsync("Hello World!");
                 });
             });
+
+            
         }
     }
 }
