@@ -80,7 +80,37 @@ namespace Mouha.DemoAspNetCoreGithub
             {
                 endpoints.MapGet("/", async context =>
                 {
+                    #region "Cours sur les variables environnement"
+                    //if (env.IsDevelopment())
+                    //{
+                    //    await context.Response.WriteAsync("Bonjour environnement dev!");
+                    //}
+                    //else if (env.IsProduction())
+                    //{
+                    //    await context.Response.WriteAsync("Bonjour environnement prod!");
+                    //}
+                    //else if (env.IsStaging())
+                    //{
+                    //    await context.Response.WriteAsync("Bonjour environnement stag!");
+                    //}
+                    //else
+                    //{
+                    //    await context.Response.WriteAsync(env.EnvironmentName);
+                    //}
+
+                    //if (env.IsEnvironment("Develop"))
+                    //{
+                    //    await context.Response.WriteAsync("Bonjour au particulier nom!");
+                    //}
+                    //else
+                    //{
+                    //    await context.Response.WriteAsync(env.EnvironmentName);
+                    //}
+
+                    #endregion
+
                     await context.Response.WriteAsync("Hello World!");
+
                 });
             });
 
