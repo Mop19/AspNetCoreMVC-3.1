@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/Mouha.DemoAspNetCoreGithub/.vs/Mouha.DemoAspNetCoreGithub
+/Mouha.DemoAspNetCoreGithub/Mouha.DemoAspNetCoreGithub/bin/Debug/netcoreapp3.1
+/Mouha.DemoAspNetCoreGithub/Mouha.DemoAspNetCoreGithub/obj
