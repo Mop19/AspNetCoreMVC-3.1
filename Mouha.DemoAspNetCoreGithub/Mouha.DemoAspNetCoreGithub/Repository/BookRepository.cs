@@ -27,11 +27,12 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         {
             return new List<BookModel>()
             {
-                new BookModel(){Id=1, Title="MVC", Author="ETienne"},
-                new BookModel(){Id=2, Title="MVVM", Author="Mouha"},
-                new BookModel(){Id=3, Title="C#", Author="Joseph"},
-                new BookModel(){Id=4, Title="JAVA", Author="Lisa"},
-                new BookModel(){Id=5, Title="PHP", Author="Belanger"},
+                new BookModel(){Id=1, Title="MVC", Author="ETienne", Description= "Ceci est la description du livre MVC"},
+                new BookModel(){Id=2, Title="MVVM", Author="Mouha", Description= "Ceci est la description du livre MVVM"},
+                new BookModel(){Id=3, Title="C#", Author="Joseph", Description = "Ceci est la description du livre C#" },
+                new BookModel(){Id=4, Title="JAVA", Author="Lisa", Description = "Ceci est la description du livre JAVA"},  
+                new BookModel(){Id=5, Title="PHP", Author="Belanger", Description = "Ceci est la description du livre PHP"},
+                new BookModel(){Id=6, Title="AZURE DEVOPS", Author="Mouhamed", Description = "Ceci est la description du livre AZURE DEVOPS"}
             };
         }
     }

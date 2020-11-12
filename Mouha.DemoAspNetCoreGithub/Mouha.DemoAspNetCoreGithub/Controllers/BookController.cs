@@ -13,16 +13,11 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         {
             _bookRepository = new BookRepository();
         }
-        //public List<BookModel> GetAllBooks()
-        //{
-        //    return _bookRepository.GetAllBooks();
-        //}
-
         public ViewResult GetAllBooks()
         {
             var data = _bookRepository.GetAllBooks();
 
-            return View();
+            return View(data);
         }
 
 
