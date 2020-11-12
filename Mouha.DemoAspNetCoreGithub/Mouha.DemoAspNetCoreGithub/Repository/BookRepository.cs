@@ -27,12 +27,12 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         {
             return new List<BookModel>()
             {
-                new BookModel(){Id=1, Title="MVC", Author="ETienne", Description= "Ceci est la description du livre MVC"},
-                new BookModel(){Id=2, Title="MVVM", Author="Mouha", Description= "Ceci est la description du livre MVVM"},
-                new BookModel(){Id=3, Title="C#", Author="Joseph", Description = "Ceci est la description du livre C#" },
-                new BookModel(){Id=4, Title="JAVA", Author="Lisa", Description = "Ceci est la description du livre JAVA"},  
-                new BookModel(){Id=5, Title="PHP", Author="Belanger", Description = "Ceci est la description du livre PHP"},
-                new BookModel(){Id=6, Title="AZURE DEVOPS", Author="Mouhamed", Description = "Ceci est la description du livre AZURE DEVOPS"}
+                new BookModel(){Id=1, Title="MVC", Author="ETienne", Description= "Ceci est la description du livre MVC", Category="Programming", Language="English", TotalPages=134},
+                new BookModel(){Id=2, Title="MVVM", Author="Mouha", Description= "Ceci est la description du livre MVVM", Category="Framework", Language="Chinese", TotalPages=567},
+                new BookModel(){Id=3, Title="C#", Author="Joseph", Description = "Ceci est la description du livre C#" , Category="Developer", Language="Hindi", TotalPages=897},
+                new BookModel(){Id=4, Title="JAVA", Author="Lisa", Description = "Ceci est la description du livre JAVA", Category="Concept", Language="English", TotalPages=564},  
+                new BookModel(){Id=5, Title="PHP", Author="Belanger", Description = "Ceci est la description du livre PHP", Category="Programming", Language="English", TotalPages=100},
+                new BookModel(){Id=6, Title="AZURE DEVOPS", Author="Mouhamed", Description = "Ceci est la description du livre AZURE DEVOPS", Category="DevOps", Language="English", TotalPages=800}
             };
         }
     }
