@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Mouha.DemoAspNetCoreGithub.Models;
 using System.Dynamic;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
@@ -7,13 +8,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     {
         public ViewResult Index()
         {
-            //ViewBag.Title = "MouhaWeb";
+            ViewData["propriete1"] = "Mouha";
 
-            //dynamic data = new ExpandoObject();
-            //data.Id = 1;
-            //data.Name = "Mouha";
-
-            //ViewBag.Data = data;
+            ViewData["book"] = new BookModel() { Id = 1, Author = "Mouhamed" };
 
             return View();
         }

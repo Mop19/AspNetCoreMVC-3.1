@@ -1,16 +1,18 @@
-﻿@*@{ 
-    dynamic data = ViewBag.Data;
-}*@
+﻿@{
+    ViewData["Title"] = "Accueil";
+    var bookInfo = ViewData["book"] as BookModel;
+}
 <section class="jumbotron text-center">
     <div class="container">
-        <h1>Bienvenue dans la gestion de livre @*@ViewBag.Title*@</h1>
+        <h1>Bienvenue dans la gestion de livre @ViewData["propriete1"]</h1>
+        <h3>Id - @bookInfo.Id</h3>
+        <h3>Auteur - @bookInfo.Author</h3>
         <p class="lead text-muted">
-            @*@data.Id @data.Name*@
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Recherche livre</a>
+            <a href="#" class="btn btn-primary my-2">Recherche livre</a>
         </p>
     </div>
 </section>
