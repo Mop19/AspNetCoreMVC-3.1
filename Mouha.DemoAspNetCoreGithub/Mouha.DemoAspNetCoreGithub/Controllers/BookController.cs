@@ -9,12 +9,16 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     {
         private readonly BookRepository _bookRepository = null;
 
+        [ViewData]
+        public string Title { get; set; }
+
         public BookController()
         {
             _bookRepository = new BookRepository();
         }
         public ViewResult GetAllBooks()
         {
+            Title = "Tous les livres c..";
             var data = _bookRepository.GetAllBooks();
 
             return View(data);
@@ -22,8 +26,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
 
         public ViewResult GetBook(int id)
-        {
+        {        
             var data = _bookRepository.GetBookById(id);
+            Title = "Détails livre c.." + data.Title;
 
             return View(data);
         }
