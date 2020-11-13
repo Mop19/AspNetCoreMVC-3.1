@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Dynamic;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
 {
@@ -6,8 +7,14 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     {
         public ViewResult Index()
         {
-           // return View("~/TempView/MouhaTemp.cshtml");//full path
-           // return View("../../TempView/MouhaTemp");//relative path
+            //ViewBag.Title = "MouhaWeb";
+
+            //dynamic data = new ExpandoObject();
+            //data.Id = 1;
+            //data.Name = "Mouha";
+
+            //ViewBag.Data = data;
+
             return View();
         }
 

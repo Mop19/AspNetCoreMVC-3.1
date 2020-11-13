@@ -1,18 +1,11 @@
-﻿
-@*@section breadcrumb{ 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Page 1</a></li>
-            <li class="breadcrumb-item active">Index</li>
-        </ol>
-    </nav>
+﻿@*@{ 
+    dynamic data = ViewBag.Data;
 }*@
-
 <section class="jumbotron text-center">
     <div class="container">
-        <h1>Bienvenue dans la gestion de livre</h1>
+        <h1>Bienvenue dans la gestion de livre @*@ViewBag.Title*@</h1>
         <p class="lead text-muted">
+            @*@data.Id @data.Name*@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
