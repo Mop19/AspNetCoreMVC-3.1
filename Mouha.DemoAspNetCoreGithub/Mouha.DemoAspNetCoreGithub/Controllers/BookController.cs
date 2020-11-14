@@ -17,21 +17,16 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             _bookRepository = new BookRepository();
         }
         public ViewResult GetAllBooks()
-        {
-            Title = "Tous les livres";
+        {          
             var data = _bookRepository.GetAllBooks();
 
             return View(data);
         }
 
-
-        public ViewResult GetBook(int id)
+        [Route("livre-detail/{id}", Name = "livreDetailRoute")]
+        public ViewResult GetBook(int id, string nomDuLivre)
         {
-            dynamic data = new System.Dynamic.ExpandoObject();
-            data.book =  _bookRepository.GetBookById(id);
-            data.Nom = "Mouhamed";
-            //var data =
-           // Title = "Détails livre" + data.Title;
+            var data = _bookRepository.GetBookById(id);
 
             return View(data);
         }

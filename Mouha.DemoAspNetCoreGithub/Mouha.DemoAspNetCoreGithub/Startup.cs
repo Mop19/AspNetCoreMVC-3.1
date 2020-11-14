@@ -36,105 +36,17 @@ namespace Mouha.DemoAspNetCoreGithub
 
             app.UseStaticFiles();
 
-            #region "Autre dossier pour static file"
-            //app.UseStaticFiles(new StaticFileOptions()
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "MesFichiersStatics")),
-            //    RequestPath = "/MesFichiersStatics"
-            //});
-            #endregion
-
-            #region "Cours sur les Middlewares"
-
-            //app.Use(async (context, next) =>
-            //{
-            //    await context.Response.WriteAsync("Bonjour, voici mon premier middleware");
-
-            //    await next();
-
-            //    await context.Response.WriteAsync("Bonjour, voici mon premier middleware");
-            //});
-
-            //app.Use(async (context, next) =>
-            //{
-            //    await context.Response.WriteAsync("Bonjour, voici mon deuxieme middleware");
-
-            //    await next();
-
-            //    await context.Response.WriteAsync("Bonjour, voici mon deuxieme middleware");
-            //});
-
-            //app.Use(async (context, next) =>
-            //{
-            //    await context.Response.WriteAsync("Bonjour, voici mon troisieme middleware");
-
-            //    await next();
-            //});
-
-            //Il faudra ajouter UseRouting()
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapGet("/", async context =>
-            //    {
-            //        await context.Response.WriteAsync("Hello World!");
-            //    });
-            //});
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.Map("/Mouha", async context =>
-            //    {
-            //        await context.Response.WriteAsync("Hello Mouha!");
-            //    });
-            //});
-
-            #endregion
-
             app.UseRouting();
-
-           
+     
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
-
-                //endpoints.MapGet("/", async context =>
-                //{
-                #region "Cours sur les variables environnement"
-                //if (env.IsDevelopment())
-                //{
-                //    await context.Response.WriteAsync("Bonjour environnement dev!");
-                //}
-                //else if (env.IsProduction())
-                //{
-                //    await context.Response.WriteAsync("Bonjour environnement prod!");
-                //}
-                //else if (env.IsStaging())
-                //{
-                //    await context.Response.WriteAsync("Bonjour environnement stag!");
-                //}
-                //else
-                //{
-                //    await context.Response.WriteAsync(env.EnvironmentName);
-                //}
-
-                //if (env.IsEnvironment("Develop"))
-                //{
-                //    await context.Response.WriteAsync("Bonjour au particulier nom!");
-                //}
-                //else
-                //{
-                //    await context.Response.WriteAsync(env.EnvironmentName);
-                //}
-
-                    #endregion
-
-                //    await context.Response.WriteAsync("Hello World!");
-
-                //});
+                 endpoints.MapDefaultControllerRoute();
+                //endpoints.MapControllerRoute(
+                //  name: "Default",
+                //  pattern: "bookApp/{controller=Home}/{action=Index}/{id?}"
+                //);
             });
-
-            
+      
         }
     }
 }
