@@ -23,8 +23,8 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View(data);
         }
 
-        [Route("livre-detail/{id}", Name = "livreDetailRoute")]
-        public ViewResult GetBook(int id, string nomDuLivre)
+        //[Route("livre-detail/{id}", Name = "livreDetailRoute")]
+        public ViewResult GetBook(int id)
         {
             var data = _bookRepository.GetBookById(id);
 
