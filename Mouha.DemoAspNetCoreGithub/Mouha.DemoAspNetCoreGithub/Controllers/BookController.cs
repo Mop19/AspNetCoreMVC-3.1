@@ -18,7 +18,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         }
         public ViewResult GetAllBooks()
         {
-            Title = "Tous les livres c..";
+            Title = "Tous les livres";
             var data = _bookRepository.GetAllBooks();
 
             return View(data);
@@ -26,9 +26,12 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
 
         public ViewResult GetBook(int id)
-        {        
-            var data = _bookRepository.GetBookById(id);
-            Title = "Détails livre c.." + data.Title;
+        {
+            dynamic data = new System.Dynamic.ExpandoObject();
+            data.book =  _bookRepository.GetBookById(id);
+            data.Nom = "Mouhamed";
+            //var data =
+           // Title = "Détails livre" + data.Title;
 
             return View(data);
         }

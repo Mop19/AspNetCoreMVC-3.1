@@ -17,7 +17,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
         public ViewResult Index()
         {
-            Title = "Accueil controlleur";
+            Title = "Accueil";
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
             return View();
@@ -25,13 +25,13 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
         public ViewResult AboutUs()
         {
-            Title = "A propos control..";
+            Title = "A propos de nous";
             return View();
         }
 
         public ViewResult ContactUs()
         {
-            Title = "Contactez-nous control..";
+            Title = "Contactez-nous";
             return View();
         }
     }
