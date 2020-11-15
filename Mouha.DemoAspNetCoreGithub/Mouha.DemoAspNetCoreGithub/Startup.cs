@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Mouha.DemoAspNetCoreGithub.Data;
+using Mouha.DemoAspNetCoreGithub.Repository;
 
 namespace Mouha.DemoAspNetCoreGithub
 {
@@ -24,12 +25,14 @@ namespace Mouha.DemoAspNetCoreGithub
             services.AddControllersWithViews();
 
             services.AddDbContext<GestionLivreContext>(
-                options => options.UseSqlServer("Server=.;Database=BookStore;Integrated Security=True"));
+                options => options.UseSqlServer("Server='.\\SQLEXPRESS';Database=BookStore;Integrated Security=True"));
 
             #if DEBUG
                 //Compilation des pages razor lorsque changement
                 services.AddRazorPages().AddRazorRuntimeCompilation();
             #endif
+
+            services.AddScoped<BookRepository, BookRepository>();//résoudre erreur par dépendence injection
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

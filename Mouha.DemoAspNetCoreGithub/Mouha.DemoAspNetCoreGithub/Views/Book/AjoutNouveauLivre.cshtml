@@ -5,6 +5,18 @@
 <form method="post" asp-action="AjoutNouveauLivre" asp-controller="Book">
     <div class="container">
         <h3 class="display-4">Ajout nouveau livre</h3>
+        <hr />
+        @if (ViewBag.EstSucces)
+        {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Félicitation!</strong> Le livre a été ajouté avec succés.<br />
+        Cliquez <a asp-controller="book" asp-action="getbook" asp-route-id="@ViewBag.LivreId">ici</a> pour voir le détail.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+        }
+
         <div class="form-group">
             <label asp-for="Title"></label>
             <input asp-for="Title" class="form-control" />

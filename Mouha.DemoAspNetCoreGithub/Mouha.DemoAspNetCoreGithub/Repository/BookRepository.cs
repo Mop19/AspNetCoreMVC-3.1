@@ -1,4 +1,5 @@
-﻿using Mouha.DemoAspNetCoreGithub.Models;
+﻿using Mouha.DemoAspNetCoreGithub.Data;
+using Mouha.DemoAspNetCoreGithub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,28 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
 {
     public class BookRepository
     {
+        private readonly GestionLivreContext _context = null;
+        public BookRepository(GestionLivreContext context) //Dependence injection
+        {
+            _context = context;
+        }
+        public int AjouterNouveauLivre(BookModel model)
+        {
+            var nouveauLivre = new Books()
+            {
+                Author = model.Author,
+                CreatedOn = DateTime.UtcNow,
+                Description = model.Description,
+                Title = model.Title,
+                TotalPages = model.TotalPages,
+                UpdatedOn = DateTime.UtcNow
+            };
+
+            _context.Books.Add(nouveauLivre);
+            _context.SaveChanges();
+
+            return nouveauLivre.Id;
+        }
         public List<BookModel> GetAllBooks()
         {
             return DataSource();

@@ -12,9 +12,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [ViewData]
         public string Title { get; set; }
 
-        public BookController()
+        public BookController(BookRepository bookRepository) ////Dependence injection
         {
-            _bookRepository = new BookRepository();
+            _bookRepository = bookRepository;
         }
         public ViewResult GetAllBooks()
         {          
@@ -36,14 +36,21 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return _bookRepository.SearchBook(bookName, authorName);  //$"Livre avec nom = {bookName} & Auteur = {authorName}";
         }
 
-        public ViewResult AjoutNouveauLivre()
+        public ViewResult AjoutNouveauLivre(bool estSucces, int livreId = 0)
         {
+            ViewBag.EstSucces = estSucces;
+            ViewBag.LivreId = livreId;
             return View();
         }
 
         [HttpPost]
-        public ViewResult AjoutNouveauLivre(BookModel bookModel)
+        public IActionResult AjoutNouveauLivre(BookModel bookModel)
         {
+            int id = _bookRepository.AjouterNouveauLivre(bookModel);
+            if (id > 0)
+            {
+                return RedirectToAction(nameof(AjoutNouveauLivre), new { estSucces = true, livreId = id });
+            }
             return View();
         }
     }
