@@ -36,12 +36,16 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         {
             return _bookRepository.SearchBook(bookName, authorName);  //$"Livre avec nom = {bookName} & Auteur = {authorName}";
         }
-
+        [HttpGet]
         public ViewResult AjoutNouveauLivre(bool estSucces, int livreId = 0)
         {
+            var model = new BookModel()
+            {
+                Language = "Anglais"
+            };
             ViewBag.EstSucces = estSucces;
             ViewBag.LivreId = livreId;
-            return View();
+            return View(model);
         }
 
         [HttpPost]
