@@ -1,4 +1,5 @@
-﻿using Mouha.DemoAspNetCoreGithub.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Mouha.DemoAspNetCoreGithub.Data;
 using Mouha.DemoAspNetCoreGithub.Models;
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,28 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
 
             return nouveauLivre.Id;
         }
-        public List<BookModel> GetAllBooks()
+        public async Task<List<BookModel>> GetAllBooks()
         {
-            return DataSource();
+            var livres = new List<BookModel>();
+            var tousleslivres = await _context.Books.ToListAsync();
+            if (tousleslivres?.Any() == true)
+            {
+                foreach (var livre in tousleslivres)
+                {
+                    livres.Add(new BookModel()
+                    {
+                        Author = livre.Author,
+                        Category = livre.Category,
+                        Description = livre.Description,
+                        Id = livre.Id,
+                        Language = livre.Language,
+                        Title = livre.Title,
+                        TotalPages = livre.TotalPages
+                    });
+                }
+            }
+
+            return livres;
         }
 
         public BookModel GetBookById(int ? id)
