@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Mouha.DemoAspNetCoreGithub.Data;
 
 namespace Mouha.DemoAspNetCoreGithub
 {
@@ -20,10 +22,14 @@ namespace Mouha.DemoAspNetCoreGithub
         {
             //Pour MVC
             services.AddControllersWithViews();
-#if DEBUG
-    //Compilation des pages razor lorsque changement
-    services.AddRazorPages().AddRazorRuntimeCompilation();
-#endif
+
+            services.AddDbContext<GestionLivreContext>(
+                options => options.UseSqlServer("Server=.;Database=BookStore;Integrated Security=True"));
+
+            #if DEBUG
+                //Compilation des pages razor lorsque changement
+                services.AddRazorPages().AddRazorRuntimeCompilation();
+            #endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,10 +47,6 @@ namespace Mouha.DemoAspNetCoreGithub
             app.UseEndpoints(endpoints =>
             {
                  endpoints.MapDefaultControllerRoute();
-                //endpoints.MapControllerRoute(
-                //  name: "Default",
-                //  pattern: "bookApp/{controller=Home}/{action=Index}/{id?}"
-                //);
             });
       
         }
