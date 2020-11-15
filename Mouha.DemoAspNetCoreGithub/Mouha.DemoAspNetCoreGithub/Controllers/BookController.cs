@@ -25,9 +25,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         }
 
         //[Route("livre-detail/{id}", Name = "livreDetailRoute")]
-        public ViewResult GetBook(int id)
+        public async Task<ViewResult> GetBook(int id)
         {
-            var data = _bookRepository.GetBookById(id);
+            var data = await _bookRepository.GetBookById(id);
 
             return View(data);
         }

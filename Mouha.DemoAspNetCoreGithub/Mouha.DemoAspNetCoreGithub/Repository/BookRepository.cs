@@ -56,9 +56,25 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
             return livres;
         }
 
-        public BookModel GetBookById(int ? id)
+        public async Task<BookModel> GetBookById(int ? id)
         {
-            return DataSource().Where(x => x.Id == id).FirstOrDefault();
+            var livre = await _context.Books.FindAsync(id);
+            if (livre != null)
+            {
+                var livreDetails = new BookModel()
+                {
+                    Author = livre.Author,
+                    Category = livre.Category,
+                    Description = livre.Description,
+                    Id = livre.Id,
+                    Language = livre.Language,
+                    Title = livre.Title,
+                    TotalPages = livre.TotalPages
+                };
+                return livreDetails;
+            }
+
+            return null;
         }
 
         public List<BookModel> SearchBook(string title, string authorName)
