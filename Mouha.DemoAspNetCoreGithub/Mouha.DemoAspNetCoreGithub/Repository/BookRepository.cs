@@ -14,7 +14,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         {
             _context = context;
         }
-        public int AjouterNouveauLivre(BookModel model)
+        public async Task<int> AjouterNouveauLivre(BookModel model)
         {
             var nouveauLivre = new Books()
             {
@@ -26,8 +26,8 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                 UpdatedOn = DateTime.UtcNow
             };
 
-            _context.Books.Add(nouveauLivre);
-            _context.SaveChanges();
+            await _context.Books.AddAsync(nouveauLivre);
+            await _context.SaveChangesAsync();
 
             return nouveauLivre.Id;
         }

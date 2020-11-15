@@ -2,6 +2,7 @@
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
 {
@@ -44,9 +45,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         }
 
         [HttpPost]
-        public IActionResult AjoutNouveauLivre(BookModel bookModel)
+        public async Task<IActionResult>  AjoutNouveauLivre(BookModel bookModel)
         {
-            int id = _bookRepository.AjouterNouveauLivre(bookModel);
+            int id = await _bookRepository.AjouterNouveauLivre(bookModel);
             if (id > 0)
             {
                 return RedirectToAction(nameof(AjoutNouveauLivre), new { estSucces = true, livreId = id });
