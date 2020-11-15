@@ -55,8 +55,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                     return RedirectToAction(nameof(AjoutNouveauLivre), new { estSucces = true, livreId = id });
                 }
             }
-            //ViewBag.EstSucces = false;
-            //ViewBag.LivreId = 0;
+
+            ModelState.AddModelError("", "Ceci est un premier message d'erreur client");
+            ModelState.AddModelError("", "Ceci est un second message d'erreur client");
 
             return View();
         }
