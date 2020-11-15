@@ -47,11 +47,17 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [HttpPost]
         public async Task<IActionResult>  AjoutNouveauLivre(BookModel bookModel)
         {
-            int id = await _bookRepository.AjouterNouveauLivre(bookModel);
-            if (id > 0)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(AjoutNouveauLivre), new { estSucces = true, livreId = id });
+                int id = await _bookRepository.AjouterNouveauLivre(bookModel);
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(AjoutNouveauLivre), new { estSucces = true, livreId = id });
+                }
             }
+            //ViewBag.EstSucces = false;
+            //ViewBag.LivreId = 0;
+
             return View();
         }
     }
