@@ -24,8 +24,8 @@
             <label asp-for="Language"></label>
             <select asp-for="Language" class="form-control">
                 <option value="">Veuillez choisir une langue</option>
-                <option>Francais</option>
-                <option>Anglais</option>
+                <option value="Francais">Francais(deuxième langue)</option>
+                <option value="Anglais">Anglais(première langue)</option>
             </select>
             <span asp-validation-for="Language" class="text-danger"></span>
         </div>

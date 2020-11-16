@@ -39,13 +39,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [HttpGet]
         public ViewResult AjoutNouveauLivre(bool estSucces, int livreId = 0)
         {
-            var model = new BookModel()
-            {
-                Language = "Anglais"
-            };
             ViewBag.EstSucces = estSucces;
             ViewBag.LivreId = livreId;
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -60,8 +56,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 }
             }
 
-            ModelState.AddModelError("", "Ceci est un premier message d'erreur client");
-            ModelState.AddModelError("", "Ceci est un second message d'erreur client");
+            ModelState.AddModelError("", "Ceci est un message d'erreur client");
 
             return View();
         }
