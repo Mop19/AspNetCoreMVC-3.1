@@ -21,11 +21,11 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group">
-            <label asp-for="Language"></label>
-            <select asp-for="Language" class="form-control" asp-items="ViewBag.Langage">
+            <label asp-for="MultiLanguage"></label>
+            <select asp-for="MultiLanguage" class="form-control" asp-items="ViewBag.Langage" multiple>
               <option value="">Veuillez choisir une langue</option>
             </select>
-            <span asp-validation-for="Language" class="text-danger"></span>
+            <span asp-validation-for="MultiLanguage" class="text-danger"></span>
         </div>
 
         <div class="form-group">

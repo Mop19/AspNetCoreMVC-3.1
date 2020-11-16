@@ -46,18 +46,14 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                // Language = "2"
             };
 
-            var groupe1 = new SelectListGroup() { Name = "Groupe 1" };
-            var groupe2 = new SelectListGroup() { Name = "Groupe 2", Disabled = true };
-            var groupe3 = new SelectListGroup() { Name = "Groupe 3" };
-
             ViewBag.Langage = new List<SelectListItem>()
             {
-              new SelectListItem(){Text="Français", Value="1", Group = groupe1 },
-               new SelectListItem(){Text="Anglais", Value="2", Group = groupe1},
-                new SelectListItem(){Text="Wolof", Value="3", Group = groupe2},
-                new SelectListItem(){Text="Espagnole", Value="4", Group = groupe2},
-                new SelectListItem(){Text="Chinois", Value="5", Group = groupe3},
-                new SelectListItem(){Text="Hindu", Value="6", Group = groupe3}
+              new SelectListItem(){Text="Français", Value="1" },
+               new SelectListItem(){Text="Anglais", Value="2"},
+                new SelectListItem(){Text="Wolof", Value="3"},
+                new SelectListItem(){Text="Espagnole", Value="4"},
+                new SelectListItem(){Text="Chinois", Value="5"},
+                new SelectListItem(){Text="Hindu", Value="6"}
             };
 
             ViewBag.EstSucces = estSucces;
@@ -77,7 +73,15 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 }
             }
 
-            ViewBag.Langage = new SelectList(GetLanguage(), "Id", "Text");
+            ViewBag.Langage = new List<SelectListItem>()
+            {
+              new SelectListItem(){Text="Français", Value="1" },
+               new SelectListItem(){Text="Anglais", Value="2"},
+                new SelectListItem(){Text="Wolof", Value="3"},
+                new SelectListItem(){Text="Espagnole", Value="4"},
+                new SelectListItem(){Text="Chinois", Value="5"},
+                new SelectListItem(){Text="Hindu", Value="6"}
+            };
 
             return View();
         }

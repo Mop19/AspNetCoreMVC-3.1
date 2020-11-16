@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mouha.DemoAspNetCoreGithub.Models
 {
@@ -15,6 +16,8 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         public string Category { get; set; }
         [Required(ErrorMessage ="S'il vous choisissez une langue")]
         public string Language { get; set; }
+        [Required(ErrorMessage = "S'il vous choisissez les langues")]
+        public List<string> MultiLanguage { get; set; }
         [Required(ErrorMessage = "S'il vous plait, entrez le total des pages du livre")]
         [Display(Name ="Nombre total des pages")]
         public int? TotalPages { get; set; }
