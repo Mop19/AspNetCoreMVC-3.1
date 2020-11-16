@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Mouha.DemoAspNetCoreGithub.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Mouha.DemoAspNetCoreGithub.Models
@@ -14,10 +15,10 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         [StringLength(500, MinimumLength = 10, ErrorMessage = "Le nombre de caractère est entre 10 a 500 ")]
         public string Description { get; set; }
         public string Category { get; set; }
-        [Required(ErrorMessage ="S'il vous choisissez une langue")]
+        //[Required(ErrorMessage ="S'il vous choisissez une langue")]
         public string Language { get; set; }
         [Required(ErrorMessage = "S'il vous choisissez les langues")]
-        public List<string> MultiLanguage { get; set; }
+        public LanguageEnum LanguageEnum { get; set; }
         [Required(ErrorMessage = "S'il vous plait, entrez le total des pages du livre")]
         [Display(Name ="Nombre total des pages")]
         public int? TotalPages { get; set; }

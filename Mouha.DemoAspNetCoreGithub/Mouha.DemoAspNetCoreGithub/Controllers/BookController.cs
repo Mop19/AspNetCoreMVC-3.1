@@ -46,15 +46,15 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                // Language = "2"
             };
 
-            ViewBag.Langage = new List<SelectListItem>()
-            {
-              new SelectListItem(){Text="Français", Value="1" },
-               new SelectListItem(){Text="Anglais", Value="2"},
-                new SelectListItem(){Text="Wolof", Value="3"},
-                new SelectListItem(){Text="Espagnole", Value="4"},
-                new SelectListItem(){Text="Chinois", Value="5"},
-                new SelectListItem(){Text="Hindu", Value="6"}
-            };
+            //ViewBag.Langage = new List<SelectListItem>()
+            //{
+            //  new SelectListItem(){Text="Français", Value="1" },
+            //   new SelectListItem(){Text="Anglais", Value="2"},
+            //    new SelectListItem(){Text="Wolof", Value="3"},
+            //    new SelectListItem(){Text="Espagnole", Value="4"},
+            //    new SelectListItem(){Text="Chinois", Value="5"},
+            //    new SelectListItem(){Text="Hindu", Value="6"}
+            //};
 
             ViewBag.EstSucces = estSucces;
             ViewBag.LivreId = livreId;
@@ -73,15 +73,15 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 }
             }
 
-            ViewBag.Langage = new List<SelectListItem>()
-            {
-              new SelectListItem(){Text="Français", Value="1" },
-               new SelectListItem(){Text="Anglais", Value="2"},
-                new SelectListItem(){Text="Wolof", Value="3"},
-                new SelectListItem(){Text="Espagnole", Value="4"},
-                new SelectListItem(){Text="Chinois", Value="5"},
-                new SelectListItem(){Text="Hindu", Value="6"}
-            };
+            //ViewBag.Langage = new List<SelectListItem>()
+            //{
+            //  new SelectListItem(){Text="Français", Value="1" },
+            //   new SelectListItem(){Text="Anglais", Value="2"},
+            //    new SelectListItem(){Text="Wolof", Value="3"},
+            //    new SelectListItem(){Text="Espagnole", Value="4"},
+            //    new SelectListItem(){Text="Chinois", Value="5"},
+            //    new SelectListItem(){Text="Hindu", Value="6"}
+            //};
 
             return View();
         }
