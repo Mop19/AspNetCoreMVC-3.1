@@ -17,7 +17,8 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         [StringLength(500, MinimumLength = 10, ErrorMessage = "Le nombre de caractère est entre 10 a 500 ")]
         public string Description { get; set; }
         public string Category { get; set; }
-        //[Required(ErrorMessage ="S'il vous choisissez une langue")]
+        [Required(ErrorMessage ="S'il vous choisissez une langue")]
+        [Display(Name ="Langue")]
         public int LanguageId { get; set; }
         [Required(ErrorMessage = "S'il vous choisissez les langues")]
         public LanguageEnum LanguageEnum { get; set; }
