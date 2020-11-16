@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
@@ -42,10 +43,22 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         {
             var model = new BookModel()
             {
-                Language = "2"
+               // Language = "2"
             };
 
-            ViewBag.Langage = new SelectList(GetLanguage(), "Id", "Text");
+            //ViewBag.Langage = GetLanguage().Select(x => new SelectListItem() 
+            //{
+            //    Text = x.Text,
+            //    Value = x.Id.ToString()
+            //}).ToList();
+
+            ViewBag.Langage = new List<SelectListItem>()
+            {
+              new SelectListItem(){Text="Français", Value="1"},
+               new SelectListItem(){Text="Anglais", Value="2", Disabled = true},
+                new SelectListItem(){Text="Wolof", Value="3", Selected = true},
+                new SelectListItem(){Text="Espagnole", Value="4", Disabled = true}
+            };
 
             ViewBag.EstSucces = estSucces;
             ViewBag.LivreId = livreId;
