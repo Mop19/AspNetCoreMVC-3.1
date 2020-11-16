@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,14 +15,18 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     {
         private readonly BookRepository _bookRepository = null;
         private readonly LanguageRepository _languageRepository = null;
+        private readonly IWebHostEnvironment _webHostEnvironment = null;
 
         [ViewData]
         public string Title { get; set; }
 
-        public BookController(BookRepository bookRepository, LanguageRepository languageRepository) ////Dependence injection
+        public BookController(BookRepository bookRepository, 
+                              LanguageRepository languageRepository,
+                              IWebHostEnvironment webHostEnvironment) //Dependence injection
         {
             _bookRepository = bookRepository;
             _languageRepository = languageRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
         public async Task<ViewResult> GetAllBooks()
         {          
@@ -60,6 +67,14 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (bookModel.CoverPhoto != null)
+                {
+                    string dossier = "books/cover/";
+                    dossier += Guid.NewGuid().ToString()+ "_"+ bookModel.CoverPhoto.FileName;
+                    string dossierServer = Path.Combine(_webHostEnvironment.WebRootPath, dossier);
+
+                    await bookModel.CoverPhoto.CopyToAsync(new FileStream(dossierServer, FileMode.Create));
+                }
                 int id = await _bookRepository.AjouterNouveauLivre(bookModel);
                 if (id > 0)
                 {

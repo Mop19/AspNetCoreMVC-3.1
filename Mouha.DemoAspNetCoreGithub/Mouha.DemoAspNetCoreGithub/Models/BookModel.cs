@@ -1,4 +1,5 @@
-﻿using Mouha.DemoAspNetCoreGithub.Data;
+﻿using Microsoft.AspNetCore.Http;
+using Mouha.DemoAspNetCoreGithub.Data;
 using Mouha.DemoAspNetCoreGithub.Enums;
 using Mouha.DemoAspNetCoreGithub.Helpers;
 using System.Collections.Generic;
@@ -27,5 +28,8 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         public int? TotalPages { get; set; }
 
         public string Language { get; set; }
+        [Display(Name ="Choisit la photo de ton livre")]
+        [Required]
+        public IFormFile CoverPhoto { get; set; }
     }
 }
