@@ -27,10 +27,15 @@ namespace Mouha.DemoAspNetCoreGithub
             services.AddDbContext<GestionLivreContext>(
                 options => options.UseSqlServer("Server='.\\SQLEXPRESS';Database=BookStore;Integrated Security=True"));
 
-            #if DEBUG
-                //Compilation des pages razor lorsque changement
-                services.AddRazorPages().AddRazorRuntimeCompilation();
-            #endif
+#if DEBUG
+            //Compilation des pages razor lorsque changement
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+            //Décommenter ce code pour disabler le client side validations.
+             //.AddViewOptions(option =>
+             //{
+             //    option.HtmlHelperOptions.ClientValidationEnabled = false;
+             //});
+#endif
 
             services.AddScoped<BookRepository, BookRepository>();//résoudre erreur par dépendence injection de books
             services.AddScoped<LanguageRepository, LanguageRepository>();//résoudre erreur par dépendence injection de languages

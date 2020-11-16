@@ -9,11 +9,8 @@ namespace Mouha.DemoAspNetCoreGithub.Models
     public class BookModel
     {
         public int Id { get; set; }
-        //[StringLength(100, MinimumLength = 5, ErrorMessage = "Le nombre de caractère est entre 5 a 100 ")]
-        //[Required(ErrorMessage ="S'il vous plait, entrez le titre du livre")]
-        //[MyCustomValidation(ErrorMessage ="Ceci est un message d'erreur du custom validation")]
-        //[MyCustomValidation(Text ="azure")]
-        [MyCustomValidation("abc")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "Le nombre de caractère est entre 5 a 100 ")]
+        [Required(ErrorMessage = "S'il vous plait, entrez le titre du livre")]
         public string Title { get; set; }
         [Required(ErrorMessage = "S'il vous plait, entrez l'auteur du livre")]
         public string Author { get; set; }
