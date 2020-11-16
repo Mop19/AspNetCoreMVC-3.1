@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 using System.Collections.Generic;
@@ -39,9 +40,16 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [HttpGet]
         public ViewResult AjoutNouveauLivre(bool estSucces, int livreId = 0)
         {
+            var model = new BookModel()
+            {
+                Language = "Français"
+            };
+
+            ViewBag.Langage = new SelectList(new List<string>() { "Français", "Anglais", "Wolof" });
+
             ViewBag.EstSucces = estSucces;
             ViewBag.LivreId = livreId;
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -56,7 +64,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 }
             }
 
-            ModelState.AddModelError("", "Ceci est un message d'erreur client");
+            ViewBag.Langage = new SelectList(new List<string>() { "Français", "Anglais", "Wolof" });
+            ModelState.AddModelError("", "Ceci est un première message d'erreur client");
+            ModelState.AddModelError("", "Ceci est un second message d'erreur client");
 
             return View();
         }

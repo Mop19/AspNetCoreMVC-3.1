@@ -1,10 +1,11 @@
 ﻿@model BookModel
 @{ 
     ViewData["Title"] = "Ajout nouveau livre";
+    string selectedVal = "Français";
 }
 
     <div class="container">
-        <h3 class="display-4">Ajout nouveau livre</h3>
+        <h3 class="display-6">Ajout nouveau livre</h3>
         <hr />
         @if (ViewBag.EstSucces == true)
         {
@@ -22,10 +23,8 @@
 
         <div class="form-group">
             <label asp-for="Language"></label>
-            <select asp-for="Language" class="form-control">
-                <option value="">Veuillez choisir une langue</option>
-                <option value="Francais">Francais(deuxième langue)</option>
-                <option value="Anglais">Anglais(première langue)</option>
+            <select asp-for="Language" class="form-control" asp-items="ViewBag.Langage">
+              <option value="">Veuillez choisir une langue</option>
             </select>
             <span asp-validation-for="Language" class="text-danger"></span>
         </div>
