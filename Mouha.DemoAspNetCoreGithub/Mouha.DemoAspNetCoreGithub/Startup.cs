@@ -32,7 +32,8 @@ namespace Mouha.DemoAspNetCoreGithub
                 services.AddRazorPages().AddRazorRuntimeCompilation();
             #endif
 
-            services.AddScoped<BookRepository, BookRepository>();//résoudre erreur par dépendence injection
+            services.AddScoped<BookRepository, BookRepository>();//résoudre erreur par dépendence injection de books
+            services.AddScoped<LanguageRepository, LanguageRepository>();//résoudre erreur par dépendence injection de languages
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
