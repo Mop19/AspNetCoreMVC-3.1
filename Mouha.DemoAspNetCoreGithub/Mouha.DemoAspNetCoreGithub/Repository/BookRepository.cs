@@ -24,9 +24,9 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                 Description = model.Description,
                 Title = model.Title,
                 LanguageId = model.LanguageId,
-                //Language = model.Language.Nom,
                 TotalPages = model.TotalPages.HasValue? model.TotalPages.Value : 0,
-                UpdatedOn = DateTime.UtcNow
+                UpdatedOn = DateTime.UtcNow,
+                CoverImageUrl = model.CoverImageUrl
             };
 
             await _context.Books.AddAsync(nouveauLivre);
@@ -49,9 +49,10 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                         Description = livre.Description,
                         Id = livre.Id,
                         LanguageId = livre.LanguageId,
-                        Language = livre.Language.Nom,
+                        //Language = livre.Language.Nom,
                         Title = livre.Title,
-                        TotalPages = livre.TotalPages
+                        TotalPages = livre.TotalPages,
+                        CoverImageUrl = livre.CoverImageUrl
                     });
                 }
             }

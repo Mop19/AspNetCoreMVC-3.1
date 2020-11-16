@@ -71,6 +71,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 {
                     string dossier = "books/cover/";
                     dossier += Guid.NewGuid().ToString()+ "_"+ bookModel.CoverPhoto.FileName;
+
+                    bookModel.CoverImageUrl = "/" + dossier;
+
                     string dossierServer = Path.Combine(_webHostEnvironment.WebRootPath, dossier);
 
                     await bookModel.CoverPhoto.CopyToAsync(new FileStream(dossierServer, FileMode.Create));

@@ -31,5 +31,6 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         [Display(Name ="Choisit la photo de ton livre")]
         [Required]
         public IFormFile CoverPhoto { get; set; }
+        public string CoverImageUrl { get; set; }
     }
 }
