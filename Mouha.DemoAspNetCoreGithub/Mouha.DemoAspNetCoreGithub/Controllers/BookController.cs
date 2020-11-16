@@ -42,10 +42,10 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         {
             var model = new BookModel()
             {
-                Language = "Français"
+                Language = "2"
             };
 
-            ViewBag.Langage = new SelectList(new List<string>() { "Français", "Anglais", "Wolof" });
+            ViewBag.Langage = new SelectList(GetLanguage(), "Id", "Text");
 
             ViewBag.EstSucces = estSucces;
             ViewBag.LivreId = livreId;
@@ -64,11 +64,19 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 }
             }
 
-            ViewBag.Langage = new SelectList(new List<string>() { "Français", "Anglais", "Wolof" });
-            ModelState.AddModelError("", "Ceci est un première message d'erreur client");
-            ModelState.AddModelError("", "Ceci est un second message d'erreur client");
+            ViewBag.Langage = new SelectList(GetLanguage(), "Id", "Text");
 
             return View();
+        }
+
+        public List<LanguageModel> GetLanguage()
+        {
+            return new List<LanguageModel>()
+            {
+                new LanguageModel(){Id = 1, Text = "Français"},
+                new LanguageModel(){Id = 2, Text = "Anglais"},
+                new LanguageModel(){Id = 3, Text = "Wolof"},
+            };
         }
     }
 }
