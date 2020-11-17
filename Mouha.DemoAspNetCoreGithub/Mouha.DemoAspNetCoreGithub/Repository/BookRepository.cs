@@ -72,7 +72,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
             return livres;
         }
 
-        public async Task<List<BookModel>> GetTopBooksAsync()
+        public async Task<List<BookModel>> GetTopBooksAsync(int count)
         {
             return await _context.Books
                    .Select(livre => new BookModel()
@@ -86,7 +86,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                        Title = livre.Title,
                        TotalPages = livre.TotalPages,
                        CoverImageUrl = livre.CoverImageUrl
-                   }).Take(5).ToListAsync();
+                   }).Take(count).ToListAsync();
         }
 
         public async Task<BookModel> GetBookById(int ? id)
