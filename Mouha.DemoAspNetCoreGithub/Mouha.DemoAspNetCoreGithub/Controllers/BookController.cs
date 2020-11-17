@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
 {
+    //[Route("[controller]/[action]")]
     public class BookController : Controller
     {
         private readonly BookRepository _bookRepository = null;
@@ -29,6 +30,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             _languageRepository = languageRepository;
             _webHostEnvironment = webHostEnvironment;
         }
+        //[Route("~/tousleslivvres")]
         public async Task<ViewResult> GetAllBooks()
         {          
             var data = await _bookRepository.GetAllBooks();
@@ -36,7 +38,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View(data);
         }
 
-        //[Route("livre-detail/{id}", Name = "livreDetailRoute")]
+        [Route("~/livre-detail/{id:int:min(1)}", Name = "livreDetailRoute")]
         public async Task<ViewResult> GetBook(int id)
         {
             var data = await _bookRepository.GetBookById(id);

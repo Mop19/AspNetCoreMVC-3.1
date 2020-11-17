@@ -4,6 +4,7 @@ using System.Dynamic;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
 {
+    //[Route("[controller]/[action]")]
     public class HomeController: Controller
     {
         [ViewData]
@@ -15,6 +16,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [ViewData]
         public BookModel Book { get; set; }
 
+        //[Route("~/")]
         public ViewResult Index()
         {
             Title = "Accueil";
@@ -23,7 +25,8 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View();
         }
 
-        public ViewResult AboutUs(int id, string name)
+        //[Route("about-us/{name:alpha:minlenght(3):regex()}")]
+        public ViewResult AboutUs(string name)
         {
             Title = "A propos de nous";
             return View();
@@ -33,6 +36,24 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         {
             Title = "Contactez-nous";
             return View();
+        }
+
+        [Route("test/a{a}")]
+        public string Test(string a)
+        {
+            return a;
+        }
+
+        [Route("test/b{a}")]
+        public string Test1(string a)
+        {
+            return a;
+        }
+
+        [Route("test/c{a}")]
+        public string Test2(string a)
+        {
+            return a;
         }
     }
 }
