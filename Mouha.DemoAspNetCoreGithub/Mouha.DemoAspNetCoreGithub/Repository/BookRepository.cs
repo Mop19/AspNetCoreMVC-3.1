@@ -26,7 +26,8 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                 LanguageId = model.LanguageId,
                 TotalPages = model.TotalPages.HasValue? model.TotalPages.Value : 0,
                 UpdatedOn = DateTime.UtcNow,
-                CoverImageUrl = model.CoverImageUrl
+                CoverImageUrl = model.CoverImageUrl,
+                BookPdfUrl = model.BookPdfUrl
             };
 
             nouveauLivre.BookGallery = new List<BookGallery>();
@@ -89,7 +90,8 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                         Id = g.Id,
                         Name = g.Name,
                         URL = g.URL 
-                    }).ToList()
+                    }).ToList(),
+                    BookPdfUrl = livre.BookPdfUrl
                 }).FirstOrDefaultAsync();
         }
 

@@ -91,6 +91,12 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                     }  
                 }
 
+                if (bookModel.BookPdf != null)
+                {
+                    string dossier = "books/cover/";
+                    bookModel.BookPdfUrl = await UploadImage(dossier, bookModel.BookPdf);
+                }
+
                 int id = await _bookRepository.AjouterNouveauLivre(bookModel);
                 if (id > 0)
                 {

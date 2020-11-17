@@ -36,5 +36,11 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         public IFormFileCollection GalleryFiles { get; set; }
 
         public List<GalleryModel> Gallery { get; set; }
+
+
+        [Display(Name = "Upload votre livre en format pdf")]
+        [Required]
+        public IFormFile BookPdf { get; set; }
+        public string BookPdfUrl { get; set; }
     }
 }
