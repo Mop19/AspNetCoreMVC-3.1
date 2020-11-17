@@ -26,11 +26,15 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         [Required(ErrorMessage = "S'il vous plait, entrez le total des pages du livre")]
         [Display(Name ="Nombre total des pages")]
         public int? TotalPages { get; set; }
-
         public string Language { get; set; }
         [Display(Name ="Choisit la photo de ton livre")]
         [Required]
         public IFormFile CoverPhoto { get; set; }
         public string CoverImageUrl { get; set; }
+        [Display(Name = "Choisit la galérie de ton livre")]
+        [Required]
+        public IFormFileCollection GalleryFiles { get; set; }
+
+        public List<GalleryModel> Gallery { get; set; }
     }
 }

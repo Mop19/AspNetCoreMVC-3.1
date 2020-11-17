@@ -18,5 +18,6 @@ namespace Mouha.DemoAspNetCoreGithub.Data
         public string CoverImageUrl { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
+        public ICollection<BookGallery> BookGallery { get; set; }
     }
 }

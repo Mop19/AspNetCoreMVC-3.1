@@ -29,6 +29,17 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                 CoverImageUrl = model.CoverImageUrl
             };
 
+            nouveauLivre.BookGallery = new List<BookGallery>();
+
+            foreach (var file in model.Gallery)
+            {
+                nouveauLivre.BookGallery.Add(new BookGallery()
+                {
+                    Name = file.Name,
+                    URL = file.URL
+                });
+            }
+
             await _context.Books.AddAsync(nouveauLivre);
             await _context.SaveChangesAsync();
 
@@ -72,7 +83,13 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                     LanguageId = livre.Language.Id,
                     Language = livre.Language.Nom,
                     Title = livre.Title,
-                    TotalPages = livre.TotalPages
+                    TotalPages = livre.TotalPages,
+                    Gallery = livre.BookGallery.Select(g => new GalleryModel()
+                    {
+                        Id = g.Id,
+                        Name = g.Name,
+                        URL = g.URL 
+                    }).ToList()
                 }).FirstOrDefaultAsync();
         }
 

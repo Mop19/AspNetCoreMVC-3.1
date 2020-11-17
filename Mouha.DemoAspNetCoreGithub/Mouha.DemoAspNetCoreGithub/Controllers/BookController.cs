@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Mouha.DemoAspNetCoreGithub.Models;
@@ -70,14 +71,26 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 if (bookModel.CoverPhoto != null)
                 {
                     string dossier = "books/cover/";
-                    dossier += Guid.NewGuid().ToString()+ "_"+ bookModel.CoverPhoto.FileName;
-
-                    bookModel.CoverImageUrl = "/" + dossier;
-
-                    string dossierServer = Path.Combine(_webHostEnvironment.WebRootPath, dossier);
-
-                    await bookModel.CoverPhoto.CopyToAsync(new FileStream(dossierServer, FileMode.Create));
+                    bookModel.CoverImageUrl = await UploadImage(dossier, bookModel.CoverPhoto);
                 }
+
+                if (bookModel.GalleryFiles != null)
+                {
+                    string dossier = "books/gallery/";
+
+                    bookModel.Gallery = new List<GalleryModel>();
+
+                    foreach (var file in bookModel.GalleryFiles)
+                    {
+                        var gallery = new GalleryModel()
+                        {
+                            Name = file.FileName,
+                            URL = await UploadImage(dossier, file)
+                        };
+                        bookModel.Gallery.Add(gallery);  
+                    }  
+                }
+
                 int id = await _bookRepository.AjouterNouveauLivre(bookModel);
                 if (id > 0)
                 {
@@ -90,6 +103,17 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View();
         }
 
-     
+        private async Task<string> UploadImage(string cheminDossier, IFormFile file)
+        {
+
+            cheminDossier += Guid.NewGuid().ToString() + "_" + file.FileName;
+
+            string dossierServer = Path.Combine(_webHostEnvironment.WebRootPath, cheminDossier);
+
+            await file.CopyToAsync(new FileStream(dossierServer, FileMode.Create));
+
+            return "/" + cheminDossier;
+        }
+
     }
 }
