@@ -9,7 +9,6 @@
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
-        @*<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
         <link rel="stylesheet" 
               href="http://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
               asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.min.css"
@@ -23,56 +22,16 @@
     <link href="~/css/Site.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="~/images/logo.png" width="30" height="30" asp-append-version="true" />
-                    Gestion des livres
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="btn btn-outline-primary" href="#">Login</a>
-                            <a class="btn btn-primary" href="#">S'enregistrer</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="aboutus">A propos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="home" asp-action="contactus">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="book" asp-action="getallbooks">Livres</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="book" asp-action="AjoutNouveauLivre">Ajouter livre</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+    
+    <partial name="_header" />
+
     @RenderSection("breadcrumb", required: false)
 
     <main role="main">
         @RenderBody()
     </main>
-    <footer class="border-top footer text-muted text-center">
-        <div class="container">
-            Copyright &copy; Gestion des livres, @DateTime.Now.Year
-            <custom-email mon-email="mouhameddiouf19@gmail.com"></custom-email>
-        </div>
-    </footer>
+
+    <partial name="_footer" />
 
     <environment include="Development">
         <script src="~/lib/jquery/jquery.js"></script>
