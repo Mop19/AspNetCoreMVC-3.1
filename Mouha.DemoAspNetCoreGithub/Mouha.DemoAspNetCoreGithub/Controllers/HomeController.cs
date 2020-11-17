@@ -23,7 +23,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View();
         }
 
-        public ViewResult AboutUs()
+        public ViewResult AboutUs(int id, string name)
         {
             Title = "A propos de nous";
             return View();
