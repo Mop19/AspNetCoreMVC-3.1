@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Mouha.DemoAspNetCoreGithub.Models;
 using System.Dynamic;
 
@@ -8,7 +9,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     //[Route("[controller]/[action]")]
     public class HomeController: Controller
     {
-        private readonly IConfiguration _configuration;
+        private readonly NouveauLivreAlertConfig _nouveauLivreAlertConfig;
+
+        //private readonly IConfiguration _configuration;
 
         [ViewData]
         public string proprieteCliente { get; set; }
@@ -19,10 +22,15 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [ViewData]
         public BookModel Book { get; set; }
 
-        public HomeController(IConfiguration configuration)
+        //public HomeController(IConfiguration configuration)
+        //{
+        //    _configuration = configuration;
+        // }
+
+        public HomeController(IOptions<NouveauLivreAlertConfig> nouveauLivreAlertConfig)
         {
-            _configuration = configuration;
-         }
+            _nouveauLivreAlertConfig = nouveauLivreAlertConfig.Value;
+        }
 
         //[Route("~/")]
         public ViewResult Index()
@@ -31,10 +39,10 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
 
-            var nouveauLivre = new NouveauLivreAlertConfig();
-            _configuration.Bind("CreationNouveauLivre", nouveauLivre);
+            //var nouveauLivre = new NouveauLivreAlertConfig();
+            //_configuration.Bind("CreationNouveauLivre", nouveauLivre);
 
-            bool estAfficher = nouveauLivre.AfficherAlertCreationLivre;
+            bool estAfficher = _nouveauLivreAlertConfig.AfficherAlertCreationLivre;
           
             //var nouveauLivre = _configuration.GetSection("CreationNouveauLivre");
             //var result = nouveauLivre.GetValue<bool>("AfficherAlertCreationLivre");

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mouha.DemoAspNetCoreGithub.Data;
+using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 
 namespace Mouha.DemoAspNetCoreGithub
@@ -40,6 +41,8 @@ namespace Mouha.DemoAspNetCoreGithub
 
             services.AddScoped<IBookRepository, BookRepository>();//résoudre erreur par dépendence injection de books
             services.AddScoped<ILanguageRepository, LanguageRepository>();//résoudre erreur par dépendence injection de languages
+
+            services.Configure<NouveauLivreAlertConfig>(_configuration.GetSection("CreationNouveauLivre"));  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
