@@ -1,5 +1,5 @@
 ﻿@using Microsoft.Extensions.Configuration
-@inject Microsoft.Extensions.Options.IOptions<NouveauLivreAlertConfig> _NouveauLivreAlertConfig
+@inject Microsoft.Extensions.Options.IOptionsSnapshot<NouveauLivreAlertConfig> _NouveauLivreAlertConfig
 @inject IConfiguration _configuration
 @{ 
     var nouveauLivreAlertConfig = _NouveauLivreAlertConfig.Value;

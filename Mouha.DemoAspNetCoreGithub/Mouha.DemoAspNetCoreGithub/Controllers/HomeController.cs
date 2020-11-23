@@ -27,7 +27,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         //    _configuration = configuration;
         // }
 
-        public HomeController(IOptions<NouveauLivreAlertConfig> nouveauLivreAlertConfig)
+        public HomeController(IOptionsSnapshot<NouveauLivreAlertConfig> nouveauLivreAlertConfig)
         {
             _nouveauLivreAlertConfig = nouveauLivreAlertConfig.Value;
         }
