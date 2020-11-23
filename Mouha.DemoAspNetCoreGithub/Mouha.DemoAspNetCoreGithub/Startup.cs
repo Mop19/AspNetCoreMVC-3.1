@@ -45,6 +45,7 @@ namespace Mouha.DemoAspNetCoreGithub
             services.AddScoped<IBookRepository, BookRepository>();//résoudre erreur par dépendence injection de books
             services.AddScoped<ILanguageRepository, LanguageRepository>();//résoudre erreur par dépendence injection de languages
             services.AddSingleton<IMessageRepository, MessageRepository>();
+            services.AddScoped<ICompteRepository, CompteRepository>();
 
             services.Configure<NouveauLivreAlertConfig>("InternalBook", _configuration.GetSection("CreationNouveauLivre"));
             services.Configure<NouveauLivreAlertConfig>("ThirdPartyBook", _configuration.GetSection("ThirdPartyBook"));

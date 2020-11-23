@@ -13,6 +13,7 @@ namespace Mouha.DemoAspNetCoreGithub.Models
         [EmailAddress(ErrorMessage = "S'il vous plait entrer un mot de passe valide")]
         public string Email { get; set; }
         [Required(ErrorMessage = "S'il vous plait entrer un fort mot de passe")]
+        [Compare("ConfirmPassword", ErrorMessage = "Les deux mots de passe sont differents")]
         [Display(Name = "Mot de passe")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
