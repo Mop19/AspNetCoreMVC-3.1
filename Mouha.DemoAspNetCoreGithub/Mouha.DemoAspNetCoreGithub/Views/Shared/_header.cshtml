@@ -1,7 +1,9 @@
 ﻿@using Microsoft.Extensions.Configuration
 @inject Mouha.DemoAspNetCoreGithub.Repository.IBookRepository _bookRepo
-
 @inject IConfiguration _configuration
+@{ 
+    var nouveauLivre = _configuration.GetSection("CreationNouveauLivre");
+}
 
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -42,10 +44,10 @@
         </div>
     </nav>
 
-    @if (_configuration.GetValue<bool>("CreationNouveauLivre:AfficherAlertCreationLivre"))
+    @if (nouveauLivre.GetValue<bool>("AfficherAlertCreationLivre"))
     {
         <div class="alert alert-info" role="alert">
-            @(_configuration.GetValue<string>("CreationNouveauLivre:NomLivre"))
+            @(nouveauLivre.GetValue<string>("NomLivre"))
         </div>
     }
 
