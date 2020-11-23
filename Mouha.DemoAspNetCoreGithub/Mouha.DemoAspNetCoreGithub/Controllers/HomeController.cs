@@ -31,11 +31,13 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
 
-            var result = _configuration["AppName"];
+            //var result = _configuration.GetValue<bool>("CreationNouveauLivre:AfficherAlertCreationLivre");
+            //var NomLivre = _configuration.GetValue<string>("CreationNouveauLivre:NomLivre");
 
-            var key1 = _configuration["infoObj:key1"];
-            var key2 = _configuration["infoObj:key2"];
-            var key3 = _configuration["infoObj:key3:key3obj1"];
+            //var result = _configuration["AppName"];
+            //var key1 = _configuration["infoObj:key1"];
+            //var key2 = _configuration["infoObj:key2"];
+            //var key3 = _configuration["infoObj:key3:key3obj1"];
 
             return View();
         }
