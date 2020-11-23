@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Mouha.DemoAspNetCoreGithub.Data;
 using Mouha.DemoAspNetCoreGithub.Models;
 using System;
@@ -8,12 +9,15 @@ using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Repository
 {
-    public class BookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly GestionLivreContext _context = null;
-        public BookRepository(GestionLivreContext context) //Dependence injection
+        private readonly IConfiguration _configuration;
+
+        public BookRepository(GestionLivreContext context, IConfiguration configuration) //Dependence injection
         {
             _context = context;
+            _configuration = configuration;
         }
         public async Task<int> AjouterNouveauLivre(BookModel model)
         {
@@ -24,7 +28,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                 Description = model.Description,
                 Title = model.Title,
                 LanguageId = model.LanguageId,
-                TotalPages = model.TotalPages.HasValue? model.TotalPages.Value : 0,
+                TotalPages = model.TotalPages.HasValue ? model.TotalPages.Value : 0,
                 UpdatedOn = DateTime.UtcNow,
                 CoverImageUrl = model.CoverImageUrl,
                 BookPdfUrl = model.BookPdfUrl
@@ -89,7 +93,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                    }).Take(count).ToListAsync();
         }
 
-        public async Task<BookModel> GetBookById(int ? id)
+        public async Task<BookModel> GetBookById(int? id)
         {
             return await _context.Books.Where(x => x.Id == id)
                 .Select(livre => new BookModel()
@@ -106,7 +110,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                     {
                         Id = g.Id,
                         Name = g.Name,
-                        URL = g.URL 
+                        URL = g.URL
                     }).ToList(),
                     BookPdfUrl = livre.BookPdfUrl
                 }).FirstOrDefaultAsync();
@@ -115,6 +119,11 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         public List<BookModel> SearchBook(string title, string authorName)
         {
             return null;
+        }
+
+        public string GetAppName()
+        {
+            return _configuration["AppName"];
         }
     }
 }

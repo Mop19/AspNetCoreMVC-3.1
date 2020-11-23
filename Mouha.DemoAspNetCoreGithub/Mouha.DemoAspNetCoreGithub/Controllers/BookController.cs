@@ -15,15 +15,15 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     //[Route("[controller]/[action]")]
     public class BookController : Controller
     {
-        private readonly BookRepository _bookRepository = null;
-        private readonly LanguageRepository _languageRepository = null;
+        private readonly IBookRepository _bookRepository = null;
+        private readonly ILanguageRepository _languageRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment = null;
 
         [ViewData]
         public string Title { get; set; }
 
-        public BookController(BookRepository bookRepository, 
-                              LanguageRepository languageRepository,
+        public BookController(IBookRepository bookRepository, 
+                              ILanguageRepository languageRepository,
                               IWebHostEnvironment webHostEnvironment) //Dependence injection
         {
             _bookRepository = bookRepository;
@@ -38,7 +38,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View(data);
         }
 
-        [Route("~/livre-detail/{id:int:min(1)}", Name = "livreDetailRoute")]
+        //[Route("~/livre-detail/{id:int:min(1)}", Name = "livreDetailRoute")]
         public async Task<ViewResult> GetBook(int id)
         {
             var data = await _bookRepository.GetBookById(id);
@@ -58,7 +58,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                // Language = "2"
             };
 
-            ViewBag.Langage = new SelectList(await _languageRepository.GetLanguages(), "Id", "Nom");
+            //ViewBag.Langage = new SelectList(await _languageRepository.GetLanguages(), "Id", "Nom");
 
             ViewBag.EstSucces = estSucces;
             ViewBag.LivreId = livreId;
@@ -106,7 +106,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 }
             }
 
-            ViewBag.Langage = new SelectList(await _languageRepository.GetLanguages(), "Id", "Nom");
+            //ViewBag.Langage = new SelectList(await _languageRepository.GetLanguages(), "Id", "Nom");
 
             return View();
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Mouha.DemoAspNetCoreGithub.Models;
 using System.Dynamic;
 
@@ -7,6 +8,8 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     //[Route("[controller]/[action]")]
     public class HomeController: Controller
     {
+        private readonly IConfiguration _configuration;
+
         [ViewData]
         public string proprieteCliente { get; set; }
 
@@ -16,12 +19,24 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [ViewData]
         public BookModel Book { get; set; }
 
+        public HomeController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+         }
+
         //[Route("~/")]
         public ViewResult Index()
         {
-            Title = "Accueil";
+            //Title = "Accueil";
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
+
+            var result = _configuration["AppName"];
+
+            var key1 = _configuration["infoObj:key1"];
+            var key2 = _configuration["infoObj:key2"];
+            var key3 = _configuration["infoObj:key3:key3obj1"];
+
             return View();
         }
 

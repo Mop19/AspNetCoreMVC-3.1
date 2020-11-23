@@ -1,4 +1,5 @@
 ﻿@using Mouha.DemoAspNetCoreGithub.Enums;
+@inject Mouha.DemoAspNetCoreGithub.Repository.ILanguageRepository _languageRepo
 @model BookModel
 @{ 
     ViewData["Title"] = "Ajout nouveau livre";
@@ -34,7 +35,7 @@
 
     <div class="form-group">
         <label asp-for="LanguageId"></label>
-        <select asp-for="LanguageId" class="form-control" asp-items="ViewBag.Langage">
+        <select asp-for="LanguageId" class="form-control" asp-items="(await _languageRepo.GetLanguages()).Select(x => new SelectListItem() { Text = x.Nom, Value = x.Id.ToString()})">
             <option value="">Veuillez choisir une langue</option>
         </select>
         <span asp-validation-for="LanguageId" class="text-danger"></span>

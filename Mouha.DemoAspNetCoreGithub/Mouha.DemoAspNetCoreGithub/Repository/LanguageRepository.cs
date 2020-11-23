@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Repository
 {
-    public class LanguageRepository: DbContext
+    public class LanguageRepository : ILanguageRepository
     {
         private readonly GestionLivreContext _context = null;
         public LanguageRepository(GestionLivreContext context)

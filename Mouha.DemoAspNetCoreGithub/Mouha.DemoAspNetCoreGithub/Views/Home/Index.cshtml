@@ -1,4 +1,6 @@
-﻿
+﻿@{ ViewData["Title"] = "Accueil";}
+@inject Mouha.DemoAspNetCoreGithub.Repository.IBookRepository _booKRepository
+
 <section class="jumbotron text-center">
     <div class="container">
         <h1>Bienvenue dans la gestion de livre</h1>
@@ -9,6 +11,12 @@
         <p>
             <a href="#" class="btn btn-primary my-2">Recherche livre</a>
         </p>
+
+        @foreach (var item in await _booKRepository.GetAllBooks())
+        {
+           <h2> @item.Title </h2>
+        }
+
     </div>
 </section>
 
