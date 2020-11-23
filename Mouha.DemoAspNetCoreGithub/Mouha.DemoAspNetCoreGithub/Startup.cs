@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,8 @@ namespace Mouha.DemoAspNetCoreGithub
                 options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<GestionLivreContext>();
 #if DEBUG
             //Compilation des pages razor lorsque changement
             services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -58,6 +61,8 @@ namespace Mouha.DemoAspNetCoreGithub
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
