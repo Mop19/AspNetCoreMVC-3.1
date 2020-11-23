@@ -2,7 +2,8 @@
 @inject Microsoft.Extensions.Options.IOptionsSnapshot<NouveauLivreAlertConfig> _NouveauLivreAlertConfig
 @inject IConfiguration _configuration
 @{ 
-    var nouveauLivreAlertConfig = _NouveauLivreAlertConfig.Value;
+    var nouveauLivreAlertConfig = _NouveauLivreAlertConfig.Get("InternalBook");
+    var thirdPartyBookConfig = _NouveauLivreAlertConfig.Get("ThirdPartyBook");
 }
 
 <header>
@@ -10,7 +11,7 @@
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="~/images/logo.png" width="30" height="30" asp-append-version="true" />
-                @_configuration["AppName"]    
+                @_configuration["AppName"]
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -52,5 +53,11 @@
     }
 
 
+    @if (nouveauLivreAlertConfig.AfficherAlertCreationLivre)
+    {
+        <div class="alert alert-info" role="alert">
+            @thirdPartyBookConfig.NomLivre
+        </div>
+    }
 
 </header>

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Mouha.DemoAspNetCoreGithub.Models;
+using Mouha.DemoAspNetCoreGithub.Repository;
 using System.Dynamic;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
@@ -10,6 +11,8 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
     public class HomeController: Controller
     {
         private readonly NouveauLivreAlertConfig _nouveauLivreAlertConfig;
+        private readonly NouveauLivreAlertConfig _thirdPartyBookConfig;
+        private readonly IMessageRepository _messageRepository;
 
         //private readonly IConfiguration _configuration;
 
@@ -27,9 +30,11 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         //    _configuration = configuration;
         // }
 
-        public HomeController(IOptionsSnapshot<NouveauLivreAlertConfig> nouveauLivreAlertConfig)
+        public HomeController(IOptionsSnapshot<NouveauLivreAlertConfig> nouveauLivreAlertConfig, IMessageRepository messageRepository)
         {
-            _nouveauLivreAlertConfig = nouveauLivreAlertConfig.Value;
+            _nouveauLivreAlertConfig = nouveauLivreAlertConfig.Get("InternalBook");
+            _thirdPartyBookConfig = nouveauLivreAlertConfig.Get("ThirdPartyBook");
+            _messageRepository = messageRepository;
         }
 
         //[Route("~/")]
@@ -39,11 +44,15 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
 
+            bool estAfficher = _nouveauLivreAlertConfig.AfficherAlertCreationLivre;
+            bool estAfficher1 = _thirdPartyBookConfig.AfficherAlertCreationLivre;
+
             //var nouveauLivre = new NouveauLivreAlertConfig();
             //_configuration.Bind("CreationNouveauLivre", nouveauLivre);
 
-            bool estAfficher = _nouveauLivreAlertConfig.AfficherAlertCreationLivre;
-          
+            //bool estAfficher = _nouveauLivreAlertConfig.AfficherAlertCreationLivre;
+            //var value = _messageRepository.GetName();
+
             //var nouveauLivre = _configuration.GetSection("CreationNouveauLivre");
             //var result = nouveauLivre.GetValue<bool>("AfficherAlertCreationLivre");
             //var NomLivre = nouveauLivre.GetValue<string>("NomLivre");

@@ -41,8 +41,10 @@ namespace Mouha.DemoAspNetCoreGithub
 
             services.AddScoped<IBookRepository, BookRepository>();//résoudre erreur par dépendence injection de books
             services.AddScoped<ILanguageRepository, LanguageRepository>();//résoudre erreur par dépendence injection de languages
+            services.AddSingleton<IMessageRepository, MessageRepository>();
 
-            services.Configure<NouveauLivreAlertConfig>(_configuration.GetSection("CreationNouveauLivre"));  
+            services.Configure<NouveauLivreAlertConfig>("InternalBook", _configuration.GetSection("CreationNouveauLivre"));
+            services.Configure<NouveauLivreAlertConfig>("ThirdPartyBook", _configuration.GetSection("ThirdPartyBook"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
