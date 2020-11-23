@@ -44,24 +44,6 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
 
-            bool estAfficher = _nouveauLivreAlertConfig.AfficherAlertCreationLivre;
-            bool estAfficher1 = _thirdPartyBookConfig.AfficherAlertCreationLivre;
-
-            //var nouveauLivre = new NouveauLivreAlertConfig();
-            //_configuration.Bind("CreationNouveauLivre", nouveauLivre);
-
-            //bool estAfficher = _nouveauLivreAlertConfig.AfficherAlertCreationLivre;
-            //var value = _messageRepository.GetName();
-
-            //var nouveauLivre = _configuration.GetSection("CreationNouveauLivre");
-            //var result = nouveauLivre.GetValue<bool>("AfficherAlertCreationLivre");
-            //var NomLivre = nouveauLivre.GetValue<string>("NomLivre");
-
-            //var result = _configuration["AppName"];
-            //var key1 = _configuration["infoObj:key1"];
-            //var key2 = _configuration["infoObj:key2"];
-            //var key3 = _configuration["infoObj:key3:key3obj1"];
-
             return View();
         }
 
