@@ -2,7 +2,8 @@
 @inject Mouha.DemoAspNetCoreGithub.Repository.IBookRepository _bookRepo
 @inject IConfiguration _configuration
 @{ 
-    var nouveauLivre = _configuration.GetSection("CreationNouveauLivre");
+    var nouveauLivre = new NouveauLivreAlertConfig();
+    _configuration.Bind("CreationNouveauLivre", nouveauLivre);
 }
 
 <header>
@@ -44,10 +45,10 @@
         </div>
     </nav>
 
-    @if (nouveauLivre.GetValue<bool>("AfficherAlertCreationLivre"))
+    @if (nouveauLivre.AfficherAlertCreationLivre)
     {
         <div class="alert alert-info" role="alert">
-            @(nouveauLivre.GetValue<string>("NomLivre"))
+            @nouveauLivre.NomLivre
         </div>
     }
 

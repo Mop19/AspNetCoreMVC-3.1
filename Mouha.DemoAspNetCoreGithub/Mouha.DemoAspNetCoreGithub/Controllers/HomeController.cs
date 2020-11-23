@@ -31,7 +31,10 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
 
-            //var nouveauLivre = _configuration.GetSection("CreationNouveauLivre").GetValue<bool>("AfficherAlertCreationLivre");
+            var nouveauLivre = new NouveauLivreAlertConfig();
+            _configuration.Bind("CreationNouveauLivre", nouveauLivre);
+
+            bool estAfficher = nouveauLivre.AfficherAlertCreationLivre;
           
             //var nouveauLivre = _configuration.GetSection("CreationNouveauLivre");
             //var result = nouveauLivre.GetValue<bool>("AfficherAlertCreationLivre");
