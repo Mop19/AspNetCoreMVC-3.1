@@ -1,0 +1,44 @@
+﻿@model Mouha.DemoAspNetCoreGithub.Models.ModifierMotdepasseModel
+
+@{
+    ViewData["Title"] = "ModifierMotdepasse";
+}
+
+<div class="container">
+        <h4 class="display-4 text-center">Changement de mot de passe</h4>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-4 offset-4"> 
+                @if (ViewBag.EstReussi == true)
+                {
+                    <div class="alert alert-success" role="alert" >
+                        Le mot de passe a été modifié avec succès
+                    </div>
+                }
+                <form asp-action="ModifierMotdepasse">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="MotdepasseCourant" class="control-label"></label>
+                        <input asp-for="MotdepasseCourant" class="form-control" />
+                        <span asp-validation-for="MotdepasseCourant" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NouveauMotdepasse" class="control-label"></label>
+                        <input asp-for="NouveauMotdepasse" class="form-control" />
+                        <span asp-validation-for="NouveauMotdepasse" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmerMotdepasse" class="control-label"></label>
+                        <input asp-for="ConfirmerMotdepasse" class="form-control" />
+                        <span asp-validation-for="ConfirmerMotdepasse" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Modifier" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+
+

@@ -9,5 +9,6 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         Task<IdentityResult> CreationUserAsync(DeconnecterUserModel logingUser);
         Task<SignInResult> PasswordSignInAsync(SeConnecterUserModel connecterUserModel);
         Task SignOutAsync();
+        Task<IdentityResult> ModifierMotdepasseAsync(ModifierMotdepasseModel model);
     }
 }

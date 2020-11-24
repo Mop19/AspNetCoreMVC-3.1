@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Mouha.DemoAspNetCoreGithub.Models;
+using Mouha.DemoAspNetCoreGithub.Services;
 using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Repository
@@ -8,11 +9,15 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUserService _userService;
 
-        public CompteRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public CompteRepository(UserManager<ApplicationUser> userManager, 
+                                SignInManager<ApplicationUser> signInManager,
+                                IUserService userService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _userService = userService;
         }
         public async Task<IdentityResult> CreationUserAsync(DeconnecterUserModel logingUser)
         {
@@ -37,6 +42,13 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         public async Task SignOutAsync()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task<IdentityResult> ModifierMotdepasseAsync(ModifierMotdepasseModel model)
+        {
+            var userId = _userService.GetUserId();
+            var user = await _userManager.FindByIdAsync(userId);
+            return await _userManager.ChangePasswordAsync(user, model.MotdepasseCourant, model.NouveauMotdepasse);
         }
     }
 }

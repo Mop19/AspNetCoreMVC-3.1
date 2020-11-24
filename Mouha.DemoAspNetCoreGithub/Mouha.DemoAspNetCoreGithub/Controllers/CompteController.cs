@@ -87,5 +87,35 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             await _compteRepository.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [Route("modifier-motdepasse")]
+        public IActionResult ModifierMotdepasse()
+        {    
+            return View();
+        }
+
+        [Route("modifier-motdepasse")]
+        [HttpPost]
+        public async Task<IActionResult> ModifierMotdepasse(ModifierMotdepasseModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //Ecrire code
+                var result = await _compteRepository.ModifierMotdepasseAsync(model);
+                if (result.Succeeded)
+                {
+                    ViewBag.EstReussi = true;
+                    ModelState.Clear();
+                    return View();
+                }
+
+                foreach (var erreur in result.Errors)
+                {
+                    ModelState.AddModelError("", erreur.Description);
+                }
+            }
+
+            return View(model);
+        }
     }
 }
