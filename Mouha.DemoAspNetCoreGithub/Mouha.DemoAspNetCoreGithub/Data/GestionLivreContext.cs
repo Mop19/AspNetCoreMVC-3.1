@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Mouha.DemoAspNetCoreGithub.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Data
 {
-    public class GestionLivreContext: IdentityDbContext
+    public class GestionLivreContext: IdentityDbContext<ApplicationUser>
     {
         public GestionLivreContext(DbContextOptions<GestionLivreContext> options)
             : base(options)

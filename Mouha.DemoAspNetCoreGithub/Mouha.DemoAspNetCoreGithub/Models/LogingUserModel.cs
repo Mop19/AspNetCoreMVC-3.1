@@ -8,6 +8,11 @@ namespace Mouha.DemoAspNetCoreGithub.Models
 {
     public class LogingUserModel
     {
+        [Required(ErrorMessage = "S'il vous plait entrer votre prénom")]
+        [Display(Name = "Prénom")]
+        public string Prenom { get; set; }
+        [Display(Name = "Nom")]
+        public string Nom { get; set; }
         [Required(ErrorMessage = "S'il vous plait entrer votre email")]
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "S'il vous plait entrer un mot de passe valide")]

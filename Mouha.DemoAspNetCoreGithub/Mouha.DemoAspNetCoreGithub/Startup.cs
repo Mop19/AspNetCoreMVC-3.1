@@ -30,8 +30,18 @@ namespace Mouha.DemoAspNetCoreGithub
                 options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<GestionLivreContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 5;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false; 
+                options.Password.RequireNonAlphanumeric = false; 
+                options.Password.RequireUppercase = false;
+            });
 #if DEBUG
             //Compilation des pages razor lorsque changement
             services.AddRazorPages().AddRazorRuntimeCompilation();

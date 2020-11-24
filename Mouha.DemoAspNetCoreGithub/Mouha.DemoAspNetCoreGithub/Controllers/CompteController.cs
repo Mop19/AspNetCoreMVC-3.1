@@ -38,10 +38,11 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                         ModelState.AddModelError("", errorMessage.Description);
                     }
 
-                    return View();
+                    return View(logingUser);
                 }
 
                 ModelState.Clear();
+                return View();
             }
             return View();
         }
