@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
+using Mouha.DemoAspNetCoreGithub.Services;
 using System.Dynamic;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
@@ -13,6 +14,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         private readonly NouveauLivreAlertConfig _nouveauLivreAlertConfig;
         private readonly NouveauLivreAlertConfig _thirdPartyBookConfig;
         private readonly IMessageRepository _messageRepository;
+        private readonly IUserService _userService;
 
         //private readonly IConfiguration _configuration;
 
@@ -25,11 +27,14 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [ViewData]
         public BookModel Book { get; set; }
 
-        public HomeController(IOptionsSnapshot<NouveauLivreAlertConfig> nouveauLivreAlertConfig, IMessageRepository messageRepository)
+        public HomeController(IOptionsSnapshot<NouveauLivreAlertConfig> nouveauLivreAlertConfig, 
+                              IMessageRepository messageRepository,
+                              IUserService userService)
         {
             _nouveauLivreAlertConfig = nouveauLivreAlertConfig.Get("InternalBook");
             _thirdPartyBookConfig = nouveauLivreAlertConfig.Get("ThirdPartyBook");
             _messageRepository = messageRepository;
+            _userService = userService;
         }
 
         //[Route("~/")]
@@ -38,6 +43,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             //Title = "Accueil";
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
+
+            var userId = _userService.GetUserId();
+            var estConnecter = _userService.EstAuthentifier();
 
             return View();
         }

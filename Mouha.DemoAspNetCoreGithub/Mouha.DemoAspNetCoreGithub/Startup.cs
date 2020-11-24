@@ -9,6 +9,7 @@ using Mouha.DemoAspNetCoreGithub.Data;
 using Mouha.DemoAspNetCoreGithub.Helpers;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
+using Mouha.DemoAspNetCoreGithub.Services;
 
 namespace Mouha.DemoAspNetCoreGithub
 {
@@ -62,6 +63,7 @@ namespace Mouha.DemoAspNetCoreGithub
             services.AddScoped<ILanguageRepository, LanguageRepository>();//résoudre erreur par dépendence injection de languages
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddScoped<ICompteRepository, CompteRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
 
