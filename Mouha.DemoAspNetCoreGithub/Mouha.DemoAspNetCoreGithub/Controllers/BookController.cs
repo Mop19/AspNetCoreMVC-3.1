@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -50,7 +51,9 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         {
             return _bookRepository.SearchBook(bookName, authorName);  //$"Livre avec nom = {bookName} & Auteur = {authorName}";
         }
+
         [HttpGet]
+        [Authorize]
         public async Task<ViewResult>  AjoutNouveauLivre(bool estSucces, int livreId = 0)
         {
             var model = new BookModel()

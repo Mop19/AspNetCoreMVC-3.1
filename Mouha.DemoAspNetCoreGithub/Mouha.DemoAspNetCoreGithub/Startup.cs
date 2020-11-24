@@ -74,6 +74,7 @@ namespace Mouha.DemoAspNetCoreGithub
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
