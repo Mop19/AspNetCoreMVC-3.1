@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mouha.DemoAspNetCoreGithub.Data;
+using Mouha.DemoAspNetCoreGithub.Helpers;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 
@@ -61,6 +62,8 @@ namespace Mouha.DemoAspNetCoreGithub
             services.AddScoped<ILanguageRepository, LanguageRepository>();//résoudre erreur par dépendence injection de languages
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddScoped<ICompteRepository, CompteRepository>();
+
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
 
             services.Configure<NouveauLivreAlertConfig>("InternalBook", _configuration.GetSection("CreationNouveauLivre"));
             services.Configure<NouveauLivreAlertConfig>("ThirdPartyBook", _configuration.GetSection("ThirdPartyBook"));
