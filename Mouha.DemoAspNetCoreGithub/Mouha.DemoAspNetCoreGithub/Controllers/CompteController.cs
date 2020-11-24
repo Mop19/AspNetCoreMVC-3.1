@@ -25,7 +25,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
         [Route("signup")]
         [HttpPost]
-        public async Task<IActionResult> SignUp(LogingUserModel logingUser)
+        public async Task<IActionResult> SignUp(DeconnecterUserModel logingUser)
         {
             if (ModelState.IsValid)
             {
@@ -45,6 +45,30 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 return View();
             }
             return View();
+        }
+
+        [Route("login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login(SeConnecterUserModel connecterUserModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _compteRepository.PasswordSignInAsync(connecterUserModel);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError("", "les informations d'identification invalides");
+            }
+
+            return View(connecterUserModel);
         }
     }
 }

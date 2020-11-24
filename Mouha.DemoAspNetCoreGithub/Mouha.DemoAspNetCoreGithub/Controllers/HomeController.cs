@@ -25,11 +25,6 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         [ViewData]
         public BookModel Book { get; set; }
 
-        //public HomeController(IConfiguration configuration)
-        //{
-        //    _configuration = configuration;
-        // }
-
         public HomeController(IOptionsSnapshot<NouveauLivreAlertConfig> nouveauLivreAlertConfig, IMessageRepository messageRepository)
         {
             _nouveauLivreAlertConfig = nouveauLivreAlertConfig.Get("InternalBook");
@@ -60,22 +55,22 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View();
         }
 
-        //[Route("test/a{a}")]
-        //public string Test(string a)
-        //{
-        //    return a;
-        //}
+        [Route("test/a{a}")]
+        public string Test(string a)
+        {
+            return a;
+        }
 
-        //[Route("test/b{a}")]
-        //public string Test1(string a)
-        //{
-        //    return a;
-        //}
+        [Route("test/b{a}")]
+        public string Test1(string a)
+        {
+            return a;
+        }
 
-        //[Route("test/c{a}")]
-        //public string Test2(string a)
-        //{
-        //    return a;
-        //}
+        [Route("test/c{a}")]
+        public string Test2(string a)
+        {
+            return a;
+        }
     }
 }

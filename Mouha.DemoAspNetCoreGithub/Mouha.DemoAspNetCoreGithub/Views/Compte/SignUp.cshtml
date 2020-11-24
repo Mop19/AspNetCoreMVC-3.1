@@ -1,4 +1,4 @@
-﻿@model Mouha.DemoAspNetCoreGithub.Models.LogingUserModel
+﻿@model Mouha.DemoAspNetCoreGithub.Models.DeconnecterUserModel
 
 @{
     Layout = null;
@@ -26,7 +26,6 @@
 
 </head>
 <body>
-
 
     <div class="container">
         <div class="row">
@@ -71,9 +70,10 @@
             </div>
         </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
+        <div>
+            <p>Cliquer <a asp-action="Login" asp-controller="Compte">ici</a> pour se connecter</p>
+        </div>
+
     </div>
-</div>
 </body>
 </html>

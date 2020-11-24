@@ -6,6 +6,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
 {
     public interface ICompteRepository
     {
-        Task<IdentityResult> CreationUserAsync(LogingUserModel logingUser);
+        Task<IdentityResult> CreationUserAsync(DeconnecterUserModel logingUser);
+        Task<SignInResult> PasswordSignInAsync(SeConnecterUserModel connecterUserModel);
     }
 }

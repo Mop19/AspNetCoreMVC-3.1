@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Models
 {
-    public class LogingUserModel
+    public class DeconnecterUserModel
     {
         [Required(ErrorMessage = "S'il vous plait entrer votre prénom")]
         [Display(Name = "Prénom")]
