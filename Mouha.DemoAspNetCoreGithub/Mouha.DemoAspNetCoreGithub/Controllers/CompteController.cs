@@ -55,13 +55,17 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(SeConnecterUserModel connecterUserModel)
+        public async Task<IActionResult> Login(SeConnecterUserModel connecterUserModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await _compteRepository.PasswordSignInAsync(connecterUserModel);
                 if (result.Succeeded)
                 {
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
 

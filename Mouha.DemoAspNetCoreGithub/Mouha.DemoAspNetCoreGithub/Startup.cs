@@ -42,6 +42,11 @@ namespace Mouha.DemoAspNetCoreGithub
                 options.Password.RequireNonAlphanumeric = false; 
                 options.Password.RequireUppercase = false;
             });
+
+            services.ConfigureApplicationCookie(config => 
+            {
+                config.LoginPath = _configuration["Application:LoginPath"];
+            });
 #if DEBUG
             //Compilation des pages razor lorsque changement
             services.AddRazorPages().AddRazorRuntimeCompilation();
