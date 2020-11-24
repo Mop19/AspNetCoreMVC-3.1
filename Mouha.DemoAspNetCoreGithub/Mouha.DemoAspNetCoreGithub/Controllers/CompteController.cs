@@ -70,5 +70,18 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
             return View(connecterUserModel);
         }
+
+        //[Route("signout")]
+        //public IActionResult SignOut()
+        //{
+        //    return View();
+        //}
+
+        [Route("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _compteRepository.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
