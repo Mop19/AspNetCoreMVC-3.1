@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Repository
@@ -10,14 +12,20 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
+        private readonly IConfiguration _configuration;
 
         public CompteRepository(UserManager<ApplicationUser> userManager, 
                                 SignInManager<ApplicationUser> signInManager,
-                                IUserService userService)
+                                IUserService userService,
+                                IEmailService emailService,
+                                IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _userService = userService;
+            _emailService = emailService;
+            _configuration = configuration;
         }
         public async Task<IdentityResult> CreationUserAsync(DeconnecterUserModel logingUser)
         {
@@ -29,6 +37,14 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
                 UserName = logingUser.Email
             };
             var result = await _userManager.CreateAsync(user, logingUser.Password);
+            if (result.Succeeded)
+            {
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                if (!string.IsNullOrEmpty(token))
+                {
+                    await EnvoyerEmailConfirmation(user, token);
+                }
+            }
             return result;
         }
 
@@ -49,6 +65,24 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
             var userId = _userService.GetUserId();
             var user = await _userManager.FindByIdAsync(userId);
             return await _userManager.ChangePasswordAsync(user, model.MotdepasseCourant, model.NouveauMotdepasse);
+        }
+
+        private async Task EnvoyerEmailConfirmation(ApplicationUser user, string token)
+        {
+            string appDomain = _configuration.GetSection("Application:AppDomain").Value;
+            string confirmationLink = _configuration.GetSection("Application:EmailConfirmation").Value;
+
+            UserEmailOptions options = new UserEmailOptions()
+            {
+                ToEmails = new List<string>() { user.Email },
+                PlaceHolders = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", user.Prenom),
+                    new KeyValuePair<string, string>("{{Link}}", string.Format(appDomain + confirmationLink, user.Id, token))
+                }
+            };
+
+            await _emailService.EnvoyerEmailPourConfirmationEmail(options);
         }
     }
 }

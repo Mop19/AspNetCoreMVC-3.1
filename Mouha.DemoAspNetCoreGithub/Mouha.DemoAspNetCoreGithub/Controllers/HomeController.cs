@@ -49,16 +49,16 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
 
-            UserEmailOptions options = new UserEmailOptions()
-            {
-                ToEmails = new List<string>() { "test@gmail.com" },
-                PlaceHolders = new List<KeyValuePair<string, string>>()
-                {
-                    new KeyValuePair<string, string>("{{UserName}}", "Mouha")
-                }
-            };
+            //UserEmailOptions options = new UserEmailOptions()
+            //{
+            //    ToEmails = new List<string>() { "test@gmail.com" },
+            //    PlaceHolders = new List<KeyValuePair<string, string>>()
+            //    {
+            //        new KeyValuePair<string, string>("{{UserName}}", "Mouha")
+            //    }
+            //};
 
-            await _emailService.EnvoyerTestEmail(options);
+            //await _emailService.EnvoyerTestEmail(options);
 
             //var userId = _userService.GetUserId();
             //var estConnecter = _userService.EstAuthentifier();

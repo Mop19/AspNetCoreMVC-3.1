@@ -23,6 +23,15 @@ namespace Mouha.DemoAspNetCoreGithub.Services
             await EnvoyerEmail(userEmailOptions);
         }
 
+        public async Task EnvoyerEmailPourConfirmationEmail(UserEmailOptions userEmailOptions)
+        {
+            userEmailOptions.Subject = UpdatePlaceHolders("Bonjour {{UserName}}, Confirmez votre id email", userEmailOptions.PlaceHolders);
+
+            userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("EmailConfirm"), userEmailOptions.PlaceHolders);
+
+            await EnvoyerEmail(userEmailOptions);
+        }
+
         public EmailService(IOptions<SMTPConfigModel> smptConfig)
         {
             _smptConfig = smptConfig.Value;

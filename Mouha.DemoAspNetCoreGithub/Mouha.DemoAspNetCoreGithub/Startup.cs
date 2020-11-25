@@ -33,7 +33,7 @@ namespace Mouha.DemoAspNetCoreGithub
             );
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                    .AddEntityFrameworkStores<GestionLivreContext>();
+                    .AddEntityFrameworkStores<GestionLivreContext>().AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
