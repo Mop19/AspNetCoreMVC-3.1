@@ -69,7 +69,15 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                ModelState.AddModelError("", "les informations d'identification invalides");
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError("", "Vous n'êtes pas autorisé à se connecter");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "les informations d'identification invalides");
+                }
+                
             }
 
             return View(connecterUserModel);
