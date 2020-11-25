@@ -4,7 +4,9 @@ using Microsoft.Extensions.Options;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 using Mouha.DemoAspNetCoreGithub.Services;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
 {
@@ -15,6 +17,7 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
         private readonly NouveauLivreAlertConfig _thirdPartyBookConfig;
         private readonly IMessageRepository _messageRepository;
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
 
         //private readonly IConfiguration _configuration;
 
@@ -29,23 +32,36 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
 
         public HomeController(IOptionsSnapshot<NouveauLivreAlertConfig> nouveauLivreAlertConfig, 
                               IMessageRepository messageRepository,
-                              IUserService userService)
+                              IUserService userService,
+                              IEmailService emailService)
         {
             _nouveauLivreAlertConfig = nouveauLivreAlertConfig.Get("InternalBook");
             _thirdPartyBookConfig = nouveauLivreAlertConfig.Get("ThirdPartyBook");
             _messageRepository = messageRepository;
             _userService = userService;
+            _emailService = emailService;
         }
 
         //[Route("~/")]
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
             //Title = "Accueil";
             proprieteCliente = "propriété Cliente";
             Book = new BookModel() { Id = 1, Title = "Asp.net Core" };
 
-            var userId = _userService.GetUserId();
-            var estConnecter = _userService.EstAuthentifier();
+            UserEmailOptions options = new UserEmailOptions()
+            {
+                ToEmails = new List<string>() { "test@gmail.com" },
+                PlaceHolders = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("{{UserName}}", "Mouha")
+                }
+            };
+
+            await _emailService.EnvoyerTestEmail(options);
+
+            //var userId = _userService.GetUserId();
+            //var estConnecter = _userService.EstAuthentifier();
 
             return View();
         }

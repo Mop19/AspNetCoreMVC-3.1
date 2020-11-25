@@ -64,9 +64,11 @@ namespace Mouha.DemoAspNetCoreGithub
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddScoped<ICompteRepository, CompteRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
 
+            services.Configure<SMTPConfigModel>(_configuration.GetSection("SMTPConfig"));
             services.Configure<NouveauLivreAlertConfig>("InternalBook", _configuration.GetSection("CreationNouveauLivre"));
             services.Configure<NouveauLivreAlertConfig>("ThirdPartyBook", _configuration.GetSection("ThirdPartyBook"));
         }
