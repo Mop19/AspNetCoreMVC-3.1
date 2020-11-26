@@ -1,0 +1,39 @@
+﻿@model EmailConfirmModel
+@{
+    ViewData["Title"] = "ConfirmEmail";
+}
+
+<div class="continer">
+    <div class="row text-center">
+        <div class="col-md-4">
+            @if (Model.EmailVerifie == true)
+            {
+                <div class="alert alert-success" role="alert">
+                    <p>Votre email est vérifié avec succès.</p>
+                </div>
+            }
+            else
+            {
+                @if (Model.EmailEnvoye)
+                {
+                    <p>Email envoyé dans votre enregistrement id email</p>
+                }
+                else
+                {
+                    <p>Nous avons envoyé un identifiant d'email. Cliquez sur le lien pur se connecter.</p>
+                }
+                <form action="/" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Email" />
+                    <p>N'avez vous pas reçu aucun e-mail supprimé par erreur?</p>
+                    <div class="form-group">
+                        <input type="submit" name="name" value="Confirmation du renvoi de l'email" />
+                    </div>
+                </form>
+
+            }
+
+        </div>
+    </div>
+</div>
+

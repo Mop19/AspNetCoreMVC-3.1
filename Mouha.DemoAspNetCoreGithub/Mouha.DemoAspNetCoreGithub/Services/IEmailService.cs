@@ -7,5 +7,6 @@ namespace Mouha.DemoAspNetCoreGithub.Services
     {
         Task EnvoyerTestEmail(UserEmailOptions userEmailOptions);
         Task EnvoyerEmailPourConfirmationEmail(UserEmailOptions userEmailOptions);
+        Task EnvoyerEmailForgotPassword(UserEmailOptions userEmailOptions);
     }
 }

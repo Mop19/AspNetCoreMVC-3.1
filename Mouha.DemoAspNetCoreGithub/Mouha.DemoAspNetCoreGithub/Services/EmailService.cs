@@ -32,6 +32,15 @@ namespace Mouha.DemoAspNetCoreGithub.Services
             await EnvoyerEmail(userEmailOptions);
         }
 
+        public async Task EnvoyerEmailForgotPassword(UserEmailOptions userEmailOptions)
+        {
+            userEmailOptions.Subject = UpdatePlaceHolders("Bonjour {{UserName}}, réinitialiser votre mot de passe", userEmailOptions.PlaceHolders);
+
+            userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("ForgotPassword"), userEmailOptions.PlaceHolders);
+
+            await EnvoyerEmail(userEmailOptions);
+        }
+
         public EmailService(IOptions<SMTPConfigModel> smptConfig)
         {
             _smptConfig = smptConfig.Value;
@@ -67,9 +76,9 @@ namespace Mouha.DemoAspNetCoreGithub.Services
             await smtpClient.SendMailAsync(mail);
         }
 
-        private string GetEmailBody(string nomTemplate)
+        private string GetEmailBody(string templateName)
         {
-            var body = File.ReadAllText(string.Format(templatePath, nomTemplate));
+            var body = File.ReadAllText(string.Format(templatePath, templateName));
             return body;
         }
 
