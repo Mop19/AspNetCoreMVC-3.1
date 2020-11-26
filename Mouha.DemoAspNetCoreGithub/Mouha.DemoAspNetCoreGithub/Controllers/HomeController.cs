@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 using Mouha.DemoAspNetCoreGithub.Services;
-using System.Collections.Generic;
-using System.Dynamic;
 using System.Threading.Tasks;
 
 namespace Mouha.DemoAspNetCoreGithub.Controllers
@@ -42,7 +40,6 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             _emailService = emailService;
         }
 
-        //[Route("~/")]
         public async Task<ViewResult> Index()
         {
             //Title = "Accueil";
@@ -66,35 +63,17 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
             return View();
         }
 
-        //[Route("about-us/{name:alpha:minlenght(3):regex()}")]
         public ViewResult AboutUs(string name)
         {
             Title = "A propos de nous";
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ViewResult ContactUs()
         {
             Title = "Contactez-nous";
             return View();
-        }
-
-        [Route("test/a{a}")]
-        public string Test(string a)
-        {
-            return a;
-        }
-
-        [Route("test/b{a}")]
-        public string Test1(string a)
-        {
-            return a;
-        }
-
-        [Route("test/c{a}")]
-        public string Test2(string a)
-        {
-            return a;
         }
     }
 }
