@@ -71,6 +71,10 @@ namespace Mouha.DemoAspNetCoreGithub.Controllers
                 {
                     ModelState.AddModelError("", "Vous n'êtes pas autorisé à se connecter");
                 }
+                else if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("", "Votre compte est verrouillé. Ressayé plus tard.");
+                }
                 else
                 {
                     ModelState.AddModelError("", "les informations d'identification invalides");

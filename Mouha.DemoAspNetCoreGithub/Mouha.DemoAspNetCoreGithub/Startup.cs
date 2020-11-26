@@ -10,6 +10,7 @@ using Mouha.DemoAspNetCoreGithub.Helpers;
 using Mouha.DemoAspNetCoreGithub.Models;
 using Mouha.DemoAspNetCoreGithub.Repository;
 using Mouha.DemoAspNetCoreGithub.Services;
+using System;
 
 namespace Mouha.DemoAspNetCoreGithub
 {
@@ -45,6 +46,9 @@ namespace Mouha.DemoAspNetCoreGithub
                 options.Password.RequireUppercase = false;
 
                 options.SignIn.RequireConfirmedEmail = true;
+
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
+                options.Lockout.MaxFailedAccessAttempts = 3;
             });
 
             services.ConfigureApplicationCookie(config => 

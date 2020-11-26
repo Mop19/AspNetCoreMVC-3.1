@@ -35,6 +35,7 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
         {
             return await _userManager.FindByEmailAsync(email);
         }
+
         public async Task<IdentityResult> CreationUserAsync(DeconnecterUserModel logingUser)
         {
             var user = new ApplicationUser()
@@ -72,14 +73,16 @@ namespace Mouha.DemoAspNetCoreGithub.Repository
 
         public async Task<SignInResult> PasswordSignInAsync(SeConnecterUserModel connecterUserModel)
         {
-            var result = await _signInManager.PasswordSignInAsync(connecterUserModel.Email, connecterUserModel.Motdepasse, connecterUserModel.RemenberMe, false);
+            var result = await _signInManager.PasswordSignInAsync(connecterUserModel.Email, connecterUserModel.Motdepasse, connecterUserModel.RemenberMe, true);
 
             return result;
         }
+
         public async Task<IdentityResult> ResetPasswordAsync(ResetPasswordModel model)
         {
             return await _userManager.ResetPasswordAsync(await _userManager.FindByIdAsync(model.UserId), model.Token, model.NouveauMotdepasse);
         }
+
         public async Task SignOutAsync()
         {
             await _signInManager.SignOutAsync();
